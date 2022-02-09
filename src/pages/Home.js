@@ -19,9 +19,9 @@ const Home = () => {
 
   console.log(process.env.REACT_APP_API_TEST);
 
-  const current_URL = `http://api.weatherapi.com/v1/current.json?key=${main_key}&q=${city}`;
-  const airQuality_URL = `http://api.weatherapi.com/v1/current.json?key=${main_key}&q=${city}&aqi=yes`;
-  const forecast_URL = `http://api.weatherapi.com/v1/forecast.json?key=${main_key}&q=${city}&days=3&aqi=yes&alerts=yes`;
+  const current_URL = `https://api.weatherapi.com/v1/current.json?key=${main_key}&q=${city}`;
+  const airQuality_URL = `https://api.weatherapi.com/v1/current.json?key=${main_key}&q=${city}&aqi=yes`;
+  const forecast_URL = `https://api.weatherapi.com/v1/forecast.json?key=${main_key}&q=${city}&days=3&aqi=yes&alerts=yes`;
   const astro_URL = `https://api.weatherapi.com/v1/astronomy.json?key=${main_key}&q=${city}`;
 
   useEffect(() => {
