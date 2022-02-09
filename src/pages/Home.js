@@ -11,7 +11,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   console.log(
-    "trying to get it up on git hub pages for a whdjfhsafdffffffffffffffffffffffffffffffffffffffff"
+    "hgkjdfshgkdfhgkjhdfkghdfghkfhgkjdfshgkljsdhgfksahdfkshdkfjhsdlkfhksldjhfklsdhflksahdfkljsdhflksedhl"
   );
 
   let city = "Lexington,NC";
