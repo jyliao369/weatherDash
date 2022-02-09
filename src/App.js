@@ -10,15 +10,14 @@ function App() {
     <Box>
       <Header />
 
-      <Home />
-      {/* <Router>
+      <Router basemname={`/${process.env.PUBLIC_URL}`}>
         <Route exact path="/">
-          
+          <Home />
         </Route>
         <Route exact path="/version2">
           <Home2 />
         </Route>
-      </Router> */}
+      </Router>
     </Box>
   );
 }
