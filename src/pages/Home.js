@@ -10,6 +10,8 @@ const Home = () => {
   const [astroWeather, setAstroWeather] = useState({});
   const [loading, setLoading] = useState(true);
 
+  console.log("trying to get it up on git hub pages");
+
   let city = "Lexington,NC";
   let main_key = "5f6f81baec5847c4aad01156220302";
 
