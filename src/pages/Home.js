@@ -2,56 +2,50 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 import { Grid, Box, Typography, Paper } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const Home = () => {
   const [currentWeather, setCurrentWeather] = useState({});
   const [forecastWeather, setForecastWeather] = useState({});
   const [airQuality, setAirQuality] = useState({});
   const [astroWeather, setAstroWeather] = useState({});
+  const [sevenForecast, setSevenForecast] = useState({});
   const [loading, setLoading] = useState(true);
 
-  console.log(
-    "hgkjdfshgkdfhgkjhdfkghdfghkfhgkjdfshgkljsdhgfksahdfkshdkfjhsdlkfhksldjhfklsdhflksahdfkljsdhflksedhl"
-  );
-
   let city = "Lexington,NC";
-  let main_key = "5f6f81baec5847c4aad01156220302";
 
-  console.log(process.env.REACT_APP_API_TEST);
-
+  let main_key = process.env.REACT_APP_API_KEY;
   const current_URL = `https://api.weatherapi.com/v1/current.json?key=${main_key}&q=${city}`;
-  const airQuality_URL = `https://api.weatherapi.com/v1/current.json?key=${main_key}&q=${city}&aqi=yes`;
   const forecast_URL = `https://api.weatherapi.com/v1/forecast.json?key=${main_key}&q=${city}&days=3&aqi=yes&alerts=yes`;
+  const airQuality_URL = `https://api.weatherapi.com/v1/current.json?key=${main_key}&q=${city}&aqi=yes`;
   const astro_URL = `https://api.weatherapi.com/v1/astronomy.json?key=${main_key}&q=${city}`;
 
-  useEffect(() => {
-    fetch(current_URL)
-      .then((response) => response.json())
-      .then((data) => {
-        setCurrentWeather(data);
-      });
-    fetch(airQuality_URL)
-      .then((response) => response.json())
-      .then((data) => {
-        setAirQuality(data.current.air_quality);
-      });
-    fetch(forecast_URL)
-      .then((response) => response.json())
-      .then((data) => {
-        setForecastWeather(data.forecast.forecastday);
-      });
-    fetch(astro_URL)
-      .then((response) => response.json())
-      .then((data) => {
-        setAstroWeather(data.astronomy.astro);
-        setLoading(false);
-      });
-  }, []);
+  let main_key2 = process.env.REACT_APP_API_KEY2;
+  const sevenForecast_URL = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${main_key2}`;
 
-  // console.log(currentWeather);
-  // console.log(forecastWeather);
-  // console.log(airQuality);
-  // console.log(astroWeather);
+  useEffect(() => {
+    (async () => {
+      try {
+        const res1 = await fetch(current_URL);
+        setCurrentWeather(await res1.json());
+
+        const res2 = await fetch(forecast_URL);
+        setForecastWeather((await res2.json()).forecast.forecastday);
+
+        const res3 = await fetch(airQuality_URL);
+        setAirQuality((await res3.json()).current.air_quality);
+
+        const res4 = await fetch(astro_URL);
+        setAstroWeather((await res4.json()).astronomy.astro);
+
+        const res5 = await fetch(sevenForecast_URL);
+        setSevenForecast(await res5.json());
+        setLoading(false);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, []);
 
   let todayDay = Date().split(" ")[0];
   let sevenDay = [];
@@ -125,7 +119,12 @@ const Home = () => {
     }
   };
   getFiveHour();
-  // console.log(fiveHour);
+
+  const theme = createTheme();
+
+  theme.typography.body1 = {
+    fontFamily: "Lato",
+  };
 
   if (loading)
     return (
@@ -136,20 +135,23 @@ const Home = () => {
 
   return (
     <Box>
-      <Grid
-        item
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
-        <Grid item xs={12}>
+      <ThemeProvider theme={theme}>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           {/* THIS IS JUST GIVES THE BASIC SUMMARY OF TODAYS WEATHER */}
-          <Paper sx={{ p: 2, m: 2 }} elevation={5}>
+          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
             <Grid>
               <Typography>
-                {currentWeather.location.name}, {currentWeather.location.region}{" "}
+                {city.split(",")[0]},{" "}
+                {currentWeather.location.region.split(" ")[0].charAt(0) +
+                  currentWeather.location.region.split(" ")[1].charAt(0)}{" "}
                 As of {currentWeather.location.localtime}
               </Typography>
               <Grid
@@ -184,9 +186,11 @@ const Home = () => {
           </Paper>
 
           {/* THIS IS FOR TODAYS FORCAST */}
-          <Paper sx={{ p: 2, m: 2 }} elevation={5}>
+          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
             <Typography>
-              {currentWeather.location.name}, {currentWeather.location.region}{" "}
+              {currentWeather.location.name},{" "}
+              {currentWeather.location.region.split(" ")[0].charAt(0) +
+                currentWeather.location.region.split(" ")[1].charAt(0)}{" "}
               Forecast
             </Typography>
             <Grid
@@ -265,7 +269,7 @@ const Home = () => {
           </Paper>
 
           {/* THIS SHOWS THE HOURLY FORECAST */}
-          <Paper sx={{ p: 2, m: 2 }} elevation={5}>
+          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
             <Typography>Hourly Forecast</Typography>
             <Grid
               item
@@ -381,13 +385,13 @@ const Home = () => {
               </Grid>
             </Grid>
           </Paper>
-
           {/* THIS SHOWS THE WEATHER CONDIIONS FOR THE DAY AND MINOR DETAILS */}
-          <Paper sx={{ p: 2, m: 2 }} elevation={5}>
+          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
             <Grid item sx={{ display: "flex", flexDirection: "column" }}>
               <Typography>
                 Weather Today in {currentWeather.location.name},{" "}
-                {currentWeather.location.region}
+                {currentWeather.location.region.split(" ")[0].charAt(0) +
+                  currentWeather.location.region.split(" ")[1].charAt(0)}
               </Typography>
               <Grid
                 item
@@ -527,7 +531,7 @@ const Home = () => {
           </Paper>
 
           {/* THIS SHOWS THE AIR QUALITY OF THE LOCATION */}
-          <Paper sx={{ p: 2, m: 2 }} elevation={5}>
+          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
             <Typography>
               {currentWeather.location.name}, {currentWeather.location.region}{" "}
               Air Quality
@@ -606,10 +610,11 @@ const Home = () => {
           </Paper>
 
           {/* THIS IS FOR ASTRONOMY RELATED TO THE CITY AND LOCATION */}
-          <Paper sx={{ p: 2, m: 2 }} elevation={5}>
+          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
             <Typography>
               Astronomy in {currentWeather.location.name},{" "}
-              {currentWeather.location.region}
+              {currentWeather.location.region.split(" ")[0].charAt(0) +
+                currentWeather.location.region.split(" ")[1].charAt(0)}
             </Typography>
             <Grid
               item
@@ -673,38 +678,77 @@ const Home = () => {
           </Paper>
 
           {/* THIS FOR 3 DAY FORECAST */}
-          <Paper sx={{ p: 2, m: 2 }} elevation={5}>
+          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
             <Typography>3-Day Forecast</Typography>
             <Grid
               item
               sx={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-between",
+                justifyContent: "space-around",
               }}
             >
-              <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
                 <Typography>Today</Typography>
-                <Typography></Typography>
+                <Typography>{forecastWeather[0].day.maxtemp_f}°F</Typography>
+                <Typography>{forecastWeather[0].day.mintemp_f}°F</Typography>
+                <Typography>ICON</Typography>
+                <Typography>{forecastWeather[0].day.condition.text}</Typography>
+                <Typography>
+                  {forecastWeather[0].day.daily_chance_of_rain}%
+                </Typography>
               </Grid>
-              <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
                 <Typography>
                   {sevenDay[1]} {forecastWeather[1].date.substr(8, 9)}
                 </Typography>
-                <Typography></Typography>
+                <Typography>{forecastWeather[1].day.maxtemp_f}°F</Typography>
+                <Typography>{forecastWeather[1].day.mintemp_f}°F</Typography>
+                <Typography>ICON</Typography>
+                <Typography>{forecastWeather[1].day.condition.text}</Typography>
+                <Typography>
+                  {forecastWeather[1].day.daily_chance_of_rain}%
+                </Typography>
               </Grid>
-              <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
                 <Typography>
                   {sevenDay[2]} {forecastWeather[2].date.substr(8, 9)}
                 </Typography>
-                <Typography></Typography>
+                <Typography>{forecastWeather[2].day.maxtemp_f}°F</Typography>
+                <Typography>{forecastWeather[2].day.mintemp_f}°F</Typography>
+                <Typography>ICON</Typography>
+                <Typography>{forecastWeather[2].day.condition.text}</Typography>
+                <Typography>
+                  {forecastWeather[2].day.daily_chance_of_rain}%
+                </Typography>
               </Grid>
             </Grid>
           </Paper>
 
           {/* THIS FOR 7 DAY FORECAST */}
-          <Paper sx={{ p: 2, m: 2 }} elevation={5}>
-            <Typography>7-Day Forecast</Typography>
+          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
+            <Typography>5-Day Forecast</Typography>
             <Grid
               item
               sx={{
@@ -713,60 +757,98 @@ const Home = () => {
                 justifyContent: "space-between",
               }}
             >
-              <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
                 <Typography>Today</Typography>
-                <Typography></Typography>
+                <Typography>{sevenForecast.data[0].max_temp}</Typography>
+                <Typography>{sevenForecast.data[0].min_temp}</Typography>
+                <Typography>ICON</Typography>
+                <Typography>
+                  {sevenForecast.data[0].weather.description}
+                </Typography>
               </Grid>
-              <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-                <Typography>{sevenDay[1]}</Typography>
-                <Typography></Typography>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Typography>
+                  {sevenDay[1]} {sevenForecast.data[1].valid_date.substr(8, 9)}
+                </Typography>
+                <Typography>{sevenForecast.data[1].max_temp}</Typography>
+                <Typography>{sevenForecast.data[1].min_temp}</Typography>
+                <Typography>ICON</Typography>
+                <Typography>
+                  {sevenForecast.data[1].weather.description}
+                </Typography>
               </Grid>
-              <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-                <Typography>{sevenDay[2]}</Typography>
-                <Typography></Typography>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Typography>
+                  {sevenDay[2]} {sevenForecast.data[2].valid_date.substr(8, 9)}
+                </Typography>
+                <Typography>{sevenForecast.data[2].max_temp}</Typography>
+                <Typography>{sevenForecast.data[2].min_temp}</Typography>
+                <Typography>ICON</Typography>
+                <Typography>
+                  {sevenForecast.data[2].weather.description}
+                </Typography>
               </Grid>
-              <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-                <Typography>{sevenDay[3]}</Typography>
-                <Typography></Typography>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Typography>
+                  {sevenDay[3]} {sevenForecast.data[3].valid_date.substr(8, 9)}
+                </Typography>
+                <Typography>{sevenForecast.data[3].max_temp}</Typography>
+                <Typography>{sevenForecast.data[3].min_temp}</Typography>
+                <Typography>ICON</Typography>
+                <Typography>
+                  {sevenForecast.data[3].weather.description}
+                </Typography>
               </Grid>
-              <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-                <Typography>{sevenDay[4]}</Typography>
-                <Typography></Typography>
-              </Grid>
-              <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-                <Typography>{sevenDay[5]}</Typography>
-                <Typography></Typography>
-              </Grid>
-              <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-                <Typography>{sevenDay[6]}</Typography>
-                <Typography></Typography>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Typography>
+                  {sevenDay[4]} {sevenForecast.data[4].valid_date.substr(8, 9)}
+                </Typography>
+                <Typography>{sevenForecast.data[4].max_temp}</Typography>
+                <Typography>{sevenForecast.data[4].min_temp}</Typography>
+                <Typography>ICON</Typography>
+                <Typography>
+                  {sevenForecast.data[4].weather.description}
+                </Typography>
               </Grid>
             </Grid>
           </Paper>
         </Grid>
-      </Grid>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      </ThemeProvider>
     </Box>
   );
 };
