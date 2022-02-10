@@ -47,7 +47,7 @@ const Home = () => {
     })();
   }, []);
 
-  console.log(forecastWeather);
+  console.log(sevenForecast);
 
   let todayDay = Date().split(" ")[0];
   let sevenDay = [];
@@ -149,17 +149,21 @@ const Home = () => {
           }}
         >
           {/* THIS IS JUST GIVES THE BASIC SUMMARY OF TODAYS WEATHER */}
-          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
+          <Paper sx={{ m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
             <Grid>
-              <Typography>
-                {city.split(",")[0]},{" "}
-                {currentWeather.location.region.split(" ")[0].charAt(0) +
-                  currentWeather.location.region.split(" ")[1].charAt(0)}{" "}
-                As of {currentWeather.location.localtime}
-              </Typography>
+              <Grid item sx={{ p: 1.5, background: "#000040", opacity: ".75" }}>
+                <Typography sx={{ fontSize: "1.2em", color: "white" }}>
+                  {city.split(",")[0]},{" "}
+                  {currentWeather.location.region.split(" ")[0].charAt(0) +
+                    currentWeather.location.region.split(" ")[1].charAt(0)}{" "}
+                  As of {currentWeather.location.localtime}
+                </Typography>
+              </Grid>
+
               <Grid
                 item
                 sx={{
+                  p: 1.5,
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
@@ -171,40 +175,56 @@ const Home = () => {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start",
+                    justifyContent: "center",
                   }}
                 >
-                  <Typography sx={{ fontSize: "2em" }}>
+                  <Typography sx={{ fontSize: "2.25em" }}>
                     {currentWeather.current.feelslike_f}°F
                   </Typography>
-                  <Typography sx={{ fontSize: "1.25em" }}>
+                  <Typography sx={{ fontSize: "1.15em" }}>
                     {currentWeather.current.condition.text}
                   </Typography>
-                  <Typography>
+                  <Typography sx={{ fontSize: "1.15em" }}>
                     Day {forecastWeather[0].hour[9].temp_f}°F • Night{" "}
                     {forecastWeather[0].hour[9].temp_f}°F
                   </Typography>
                 </Grid>
-                <Grid>
-                  <img
-                    src={currentWeather.current.condition.icon}
-                    alt="weatherIcon"
-                  />
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Grid>
+                    <img
+                      src={currentWeather.current.condition.icon}
+                      alt="weatherIcon"
+                      height="100px"
+                      width="100px"
+                    />
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
           </Paper>
 
           {/* THIS IS FOR TODAYS FORCAST */}
-          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
-            <Typography>
-              {currentWeather.location.name},{" "}
-              {currentWeather.location.region.split(" ")[0].charAt(0) +
-                currentWeather.location.region.split(" ")[1].charAt(0)}{" "}
-              Forecast
-            </Typography>
+          <Paper sx={{ m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
+            <Grid item sx={{ p: 1.5, pb: 0 }}>
+              <Typography sx={{ fontSize: "1.2em" }}>
+                {currentWeather.location.name},{" "}
+                {currentWeather.location.region.split(" ")[0].charAt(0) +
+                  currentWeather.location.region.split(" ")[1].charAt(0)}{" "}
+                Forecast
+              </Typography>
+            </Grid>
+
             <Grid
               item
               sx={{
+                p: 1.5,
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
@@ -218,13 +238,15 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography>Morning</Typography>
+                <Typography sx={{ fontSize: "1.1em", mb: 0.75 }}>
+                  Morning
+                </Typography>
                 <Typography>{forecastWeather[0].hour[6].temp_f}°F</Typography>
                 <img
                   src={forecastWeather[0].hour[6].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography>
+                <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[6].condition.text}
                 </Typography>
                 <Typography>{forecastWeather[0].hour[6].humidity}%</Typography>
@@ -237,13 +259,15 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography>Afternoon</Typography>
+                <Typography sx={{ fontSize: "1.1em", mb: 0.75 }}>
+                  Afternoon
+                </Typography>
                 <Typography>{forecastWeather[0].hour[12].temp_f}°F</Typography>
                 <img
                   src={forecastWeather[0].hour[12].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography>
+                <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[12].condition.text}
                 </Typography>
                 <Typography>{forecastWeather[0].hour[12].humidity}%</Typography>
@@ -256,13 +280,15 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography>Evening</Typography>
+                <Typography sx={{ fontSize: "1.1em", mb: 0.75 }}>
+                  Evening
+                </Typography>
                 <Typography>{forecastWeather[0].hour[18].temp_f}°F</Typography>
                 <img
                   src={forecastWeather[0].hour[18].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography>
+                <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[18].condition.text}
                 </Typography>
                 <Typography>{forecastWeather[0].hour[18].humidity}%</Typography>
@@ -275,13 +301,15 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography>Overnight</Typography>
+                <Typography sx={{ fontSize: "1.1em", mb: 0.75 }}>
+                  Overnight
+                </Typography>
                 <Typography>{forecastWeather[0].hour[0].temp_f}°F</Typography>
                 <img
                   src={forecastWeather[0].hour[0].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography>
+                <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[0].condition.text}
                 </Typography>
                 <Typography>{forecastWeather[0].hour[0].humidity}%</Typography>
@@ -290,11 +318,16 @@ const Home = () => {
           </Paper>
 
           {/* THIS SHOWS THE HOURLY FORECAST */}
-          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
-            <Typography>Hourly Forecast</Typography>
+          <Paper sx={{ m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
+            <Grid item sx={{ p: 1.5, pb: 0 }}>
+              <Typography sx={{ fontSize: "1.2em" }}>
+                Hourly Forecast
+              </Typography>
+            </Grid>
             <Grid
               item
               sx={{
+                p: 1.5,
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
@@ -308,7 +341,9 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography>Now</Typography>
+                <Typography sx={{ fontSize: "1.1em", mb: 0.75 }}>
+                  Now
+                </Typography>
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[0][0]].temp_f}°F
                 </Typography>
@@ -316,7 +351,7 @@ const Home = () => {
                   src={forecastWeather[0].hour[fiveHour[0][0]].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography>
+                <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[fiveHour[0][0]].condition.text}
                 </Typography>
                 <Typography>
@@ -332,7 +367,9 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography>{fiveHour[1][1]}</Typography>
+                <Typography sx={{ fontSize: "1.1em", mb: 0.75 }}>
+                  {fiveHour[1][1]}
+                </Typography>
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[1][0]].temp_f}°F
                 </Typography>
@@ -340,7 +377,7 @@ const Home = () => {
                   src={forecastWeather[0].hour[fiveHour[1][0]].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography>
+                <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[fiveHour[1][0]].condition.text}
                 </Typography>
                 <Typography>
@@ -356,7 +393,9 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography>{fiveHour[2][1]}</Typography>
+                <Typography sx={{ fontSize: "1.1em", mb: 0.75 }}>
+                  {fiveHour[2][1]}
+                </Typography>
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[2][0]].temp_f}°F
                 </Typography>
@@ -364,7 +403,7 @@ const Home = () => {
                   src={forecastWeather[0].hour[fiveHour[2][0]].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography>
+                <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[fiveHour[2][0]].condition.text}
                 </Typography>
                 <Typography>
@@ -380,7 +419,9 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography>{fiveHour[3][1]}</Typography>
+                <Typography sx={{ fontSize: "1.1em", mb: 0.75 }}>
+                  {fiveHour[3][1]}
+                </Typography>
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[3][0]].temp_f}°F
                 </Typography>
@@ -388,7 +429,7 @@ const Home = () => {
                   src={forecastWeather[0].hour[fiveHour[3][0]].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography>
+                <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[fiveHour[3][0]].condition.text}
                 </Typography>
                 <Typography>
@@ -404,7 +445,9 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography>{fiveHour[4][1]}</Typography>
+                <Typography sx={{ fontSize: "1.1em", mb: 0.75 }}>
+                  {fiveHour[4][1]}
+                </Typography>
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[4][0]].temp_f}°F
                 </Typography>
@@ -412,7 +455,7 @@ const Home = () => {
                   src={forecastWeather[0].hour[fiveHour[4][0]].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography>
+                <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[fiveHour[4][0]].condition.text}
                 </Typography>
                 <Typography>
@@ -421,48 +464,61 @@ const Home = () => {
               </Grid>
             </Grid>
           </Paper>
+
           {/* THIS SHOWS THE WEATHER CONDIIONS FOR THE DAY AND MINOR DETAILS */}
-          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
-            <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-              <Typography>
-                Weather Today in {currentWeather.location.name},{" "}
-                {currentWeather.location.region.split(" ")[0].charAt(0) +
-                  currentWeather.location.region.split(" ")[1].charAt(0)}
-              </Typography>
+          <Paper sx={{ m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
+            <Grid
+              item
+              sx={{ p: 1.5, pb: 0, display: "flex", flexDirection: "column" }}
+            >
+              <Grid>
+                <Typography sx={{ fontSize: "1.2em" }}>
+                  Weather Today in {currentWeather.location.name},{" "}
+                  {currentWeather.location.region.split(" ")[0].charAt(0) +
+                    currentWeather.location.region.split(" ")[1].charAt(0)}
+                </Typography>
+              </Grid>
               <Grid
                 item
                 sx={{
+                  m: 0.5,
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
                   alignItems: "center",
                 }}
               >
-                <Grid>
-                  <Typography>
+                <Grid item>
+                  <Typography sx={{ fontSize: "2.25em" }}>
                     {currentWeather.current.feelslike_f}°F
                   </Typography>
-                  <Typography>Feels Like</Typography>
+                  <Typography sx={{ fontSize: "1.25em" }}>
+                    Feels Like
+                  </Typography>
                 </Grid>
                 <img
                   src={currentWeather.current.condition.icon}
                   alt="weatherIcon"
+                  height="100px"
+                  width="100px"
                 />
               </Grid>
             </Grid>
-
             {/* THIS IS FOR CURRENT WEATHER CONDITIONS */}
-            <Grid>
+            <Grid item sx={{ p: 1.5, pt: 0 }}>
+              <hr />
               <Grid
                 item
                 sx={{
+                  mt: 1.25,
+                  mb: 1.25,
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}
               >
-                <Typography>High / Low</Typography>
-                <Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>High / Low</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
                   {forecastWeather[0].day.maxtemp_f}°F /{" "}
                   {forecastWeather[0].day.mintemp_f}°F
                 </Typography>
@@ -471,61 +527,81 @@ const Home = () => {
               <Grid
                 item
                 sx={{
+                  mt: 1.25,
+                  mb: 1.25,
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}
               >
-                <Typography>Wind Direction</Typography>
-                <Typography>{currentWeather.current.wind_dir}</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  Wind Direction
+                </Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {currentWeather.current.wind_dir}
+                </Typography>
               </Grid>
               <hr />
               <Grid
                 item
                 sx={{
+                  mt: 1.25,
+                  mb: 1.25,
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}
               >
-                <Typography>Wind Speed</Typography>
-                <Typography>{currentWeather.current.wind_mph} mph</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>Wind Speed</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {currentWeather.current.wind_mph} mph
+                </Typography>
               </Grid>
               <hr />
               <Grid
                 item
                 sx={{
+                  mt: 1.25,
+                  mb: 1.25,
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}
               >
-                <Typography>Gust Speed</Typography>
-                <Typography>{currentWeather.current.gust_mph} mph</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>Gust Speed</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {currentWeather.current.gust_mph} mph
+                </Typography>
               </Grid>
               <hr />
               <Grid
                 item
                 sx={{
+                  mt: 1.25,
+                  mb: 1.25,
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}
               >
-                <Typography>Humidity</Typography>
-                <Typography>{currentWeather.current.humidity}%</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>Humidity</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {currentWeather.current.humidity}%
+                </Typography>
               </Grid>
               <hr />
               <Grid
                 item
                 sx={{
+                  mt: 1.25,
+                  mb: 1.25,
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}
               >
-                <Typography>Pressure</Typography>
-                <Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>Pressure</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
                   {currentWeather.current.pressure_in} in.
                 </Typography>
               </Grid>
@@ -533,25 +609,31 @@ const Home = () => {
               <Grid
                 item
                 sx={{
+                  mt: 1.25,
+                  mb: 1.25,
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}
               >
-                <Typography>UV Index</Typography>
-                <Typography>{currentWeather.current.uv} out of 10</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>UV Index</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {currentWeather.current.uv} out of 10
+                </Typography>
               </Grid>
               <hr />
               <Grid
                 item
                 sx={{
+                  mt: 1.25,
+                  mb: 1.25,
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}
               >
-                <Typography>Visibility</Typography>
-                <Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>Visibility</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
                   {currentWeather.current.vis_miles} miles
                 </Typography>
               </Grid>
@@ -559,170 +641,237 @@ const Home = () => {
               <Grid
                 item
                 sx={{
+                  mt: 1.25,
+                  mb: 0,
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}
               >
-                <Typography>Moon Phase</Typography>
-                <Typography>{forecastWeather[0].astro.moon_phase}</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>Moon Phase</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {forecastWeather[0].astro.moon_phase}
+                </Typography>
               </Grid>
             </Grid>
           </Paper>
 
           {/* THIS SHOWS THE AIR QUALITY OF THE LOCATION */}
-          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
-            <Typography>
-              {currentWeather.location.name}, {currentWeather.location.region}{" "}
-              Air Quality
-            </Typography>
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography>Carbon Monoxide (CO2)</Typography>
-              <Typography>{Math.floor(airQuality.co)} (μg/m3)</Typography>
+          <Paper sx={{ m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
+            <Grid item sx={{ p: 1.5 }}>
+              <Typography sx={{ fontSize: "1.2em" }}>
+                {currentWeather.location.name}, {currentWeather.location.region}{" "}
+                Air Quality
+              </Typography>
             </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography>Ozone (O3)</Typography>
-              <Typography>{Math.floor(airQuality.o3)} (μg/m3)</Typography>
-            </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography>Sulphur Dioxide (SO2)</Typography>
-              <Typography>{Math.floor(airQuality.so2)} (μg/m3)</Typography>
-            </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography>PM2.5</Typography>
-              <Typography>{Math.floor(airQuality.pm2_5)} (μg/m3)</Typography>
-            </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography>PM10</Typography>
-              <Typography>{Math.floor(airQuality.pm10)} (μg/m3)</Typography>
-            </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography>UK Defra Index</Typography>
-              <Typography>{airQuality["gb-defra-index"]} out of 10</Typography>
+            <Grid item sx={{ p: 1.5 }}>
+              <Grid
+                item
+                sx={{
+                  mt: 1.25,
+                  mb: 1.25,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  Carbon Monoxide (CO2)
+                </Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {Math.floor(airQuality.co)} (μg/m3)
+                </Typography>
+              </Grid>
+              <hr />
+              <Grid
+                item
+                sx={{
+                  mt: 1.25,
+                  mb: 1.25,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography sx={{ fontSize: "1.1em" }}>Ozone (O3)</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {Math.floor(airQuality.o3)} (μg/m3)
+                </Typography>
+              </Grid>
+              <hr />
+              <Grid
+                item
+                sx={{
+                  mt: 1.25,
+                  mb: 1.25,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  Sulphur Dioxide (SO2)
+                </Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {Math.floor(airQuality.so2)} (μg/m3)
+                </Typography>
+              </Grid>
+              <hr />
+              <Grid
+                item
+                sx={{
+                  mt: 1.25,
+                  mb: 1.25,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography sx={{ fontSize: "1.1em" }}>PM2.5</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {Math.floor(airQuality.pm2_5)} (μg/m3)
+                </Typography>
+              </Grid>
+              <hr />
+              <Grid
+                item
+                sx={{
+                  mt: 1.25,
+                  mb: 1.25,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography sx={{ fontSize: "1.1em" }}>PM10</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {Math.floor(airQuality.pm10)} (μg/m3)
+                </Typography>
+              </Grid>
+              <hr />
+              <Grid
+                item
+                sx={{
+                  mt: 1.25,
+                  mb: 0,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  UK Defra Index
+                </Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {airQuality["gb-defra-index"]} out of 10
+                </Typography>
+              </Grid>
             </Grid>
           </Paper>
 
           {/* THIS IS FOR ASTRONOMY RELATED TO THE CITY AND LOCATION */}
-          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
-            <Typography>
-              Astronomy in {currentWeather.location.name},{" "}
-              {currentWeather.location.region.split(" ")[0].charAt(0) +
-                currentWeather.location.region.split(" ")[1].charAt(0)}
-            </Typography>
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography>Moon Illumination</Typography>
-              <Typography>{astroWeather.moon_illumination}%</Typography>
+          <Paper sx={{ m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
+            <Grid item sx={{ p: 1.5 }}>
+              <Typography sx={{ fontSize: "1.2em" }}>
+                Astronomy in {currentWeather.location.name},{" "}
+                {currentWeather.location.region.split(" ")[0].charAt(0) +
+                  currentWeather.location.region.split(" ")[1].charAt(0)}
+              </Typography>
             </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography>Sunrise</Typography>
-              <Typography>{astroWeather.sunrise}</Typography>
-            </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography>Sunset</Typography>
-              <Typography>{astroWeather.sunset}</Typography>
-            </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography>Moonrise</Typography>
-              <Typography>{astroWeather.moonrise}</Typography>
-            </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography>Moonset</Typography>
-              <Typography>{astroWeather.moonset}</Typography>
+            <Grid item sx={{ p: 1.5 }}>
+              <Grid
+                item
+                sx={{
+                  mt: 1.25,
+                  mb: 1.25,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  Moon Illumination
+                </Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {astroWeather.moon_illumination}%
+                </Typography>
+              </Grid>
+              <hr />
+              <Grid
+                item
+                sx={{
+                  mt: 1.25,
+                  mb: 1.25,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography sx={{ fontSize: "1.1em" }}>Sunrise</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {astroWeather.sunrise}
+                </Typography>
+              </Grid>
+              <hr />
+              <Grid
+                item
+                sx={{
+                  mt: 1.25,
+                  mb: 1.25,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography sx={{ fontSize: "1.1em" }}>Sunset</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {astroWeather.sunset}
+                </Typography>
+              </Grid>
+              <hr />
+              <Grid
+                item
+                sx={{
+                  mt: 1.25,
+                  mb: 1.25,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography sx={{ fontSize: "1.1em" }}>Moonrise</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {astroWeather.moonrise}
+                </Typography>
+              </Grid>
+              <hr />
+              <Grid
+                item
+                sx={{
+                  mt: 1.25,
+                  mb: 1.25,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography sx={{ fontSize: "1.1em" }}>Moonset</Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {astroWeather.moonset}
+                </Typography>
+              </Grid>
             </Grid>
           </Paper>
 
           {/* THIS FOR 3 DAY FORECAST */}
-          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
-            <Typography>3-Day Forecast</Typography>
+          <Paper sx={{ m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
+            <Grid item sx={{ p: 1.5 }}>
+              <Typography sx={{ fontSize: "1.2em" }}>3-Day Forecast</Typography>
+            </Grid>
             <Grid
               item
               sx={{
+                p: 1.5,
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-around",
@@ -737,8 +886,10 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography>Today</Typography>
-                <Typography sx={{ fontSize: "1.25em" }}>
+                <Typography sx={{ fontSize: "1.1em", mb: 0.75 }}>
+                  Today
+                </Typography>
+                <Typography sx={{ fontSize: "1.25em", mb: 0.75 }}>
                   {forecastWeather[0].day.maxtemp_f}°F
                 </Typography>
                 <Typography>{forecastWeather[0].day.mintemp_f}°F</Typography>
@@ -760,10 +911,10 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography>
+                <Typography sx={{ fontSize: "1.1em", mb: 0.75 }}>
                   {sevenDay[1]} {forecastWeather[1].date.substr(8, 9)}
                 </Typography>
-                <Typography sx={{ fontSize: "1.25em" }}>
+                <Typography sx={{ fontSize: "1.25em", mb: 0.75 }}>
                   {forecastWeather[1].day.maxtemp_f}°F
                 </Typography>
                 <Typography>{forecastWeather[1].day.mintemp_f}°F</Typography>
@@ -785,10 +936,10 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography>
+                <Typography sx={{ fontSize: "1.1em", mb: 0.75 }}>
                   {sevenDay[2]} {forecastWeather[2].date.substr(8, 9)}
                 </Typography>
-                <Typography sx={{ fontSize: "1.25em" }}>
+                <Typography sx={{ fontSize: "1.25em", mb: 0.75 }}>
                   {forecastWeather[2].day.maxtemp_f}°F
                 </Typography>
                 <Typography>{forecastWeather[2].day.mintemp_f}°F</Typography>
@@ -817,6 +968,7 @@ const Home = () => {
             >
               <Grid
                 item
+                xs={2.3}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -833,6 +985,7 @@ const Home = () => {
               </Grid>
               <Grid
                 item
+                xs={2.3}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -851,6 +1004,7 @@ const Home = () => {
               </Grid>
               <Grid
                 item
+                xs={2.3}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -869,6 +1023,7 @@ const Home = () => {
               </Grid>
               <Grid
                 item
+                xs={2.3}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -887,6 +1042,7 @@ const Home = () => {
               </Grid>
               <Grid
                 item
+                xs={2.3}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
