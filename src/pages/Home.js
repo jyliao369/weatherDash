@@ -47,6 +47,8 @@ const Home = () => {
     })();
   }, []);
 
+  console.log(forecastWeather);
+
   let todayDay = Date().split(" ")[0];
   let sevenDay = [];
   const getSevenDayofWeek = () => {
@@ -139,6 +141,7 @@ const Home = () => {
         <Grid
           item
           xs={12}
+          md={2.5}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -167,19 +170,25 @@ const Home = () => {
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    alignItems: "center",
+                    alignItems: "flex-start",
                   }}
                 >
-                  <Typography>
+                  <Typography sx={{ fontSize: "2em" }}>
                     {currentWeather.current.feelslike_f}°F
                   </Typography>
-                  <Typography>
+                  <Typography sx={{ fontSize: "1.25em" }}>
                     {currentWeather.current.condition.text}
                   </Typography>
                   <Typography>
                     Day {forecastWeather[0].hour[9].temp_f}°F • Night{" "}
                     {forecastWeather[0].hour[9].temp_f}°F
                   </Typography>
+                </Grid>
+                <Grid>
+                  <img
+                    src={currentWeather.current.condition.icon}
+                    alt="weatherIcon"
+                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -211,7 +220,10 @@ const Home = () => {
               >
                 <Typography>Morning</Typography>
                 <Typography>{forecastWeather[0].hour[6].temp_f}°F</Typography>
-                <Typography>icon</Typography>
+                <img
+                  src={forecastWeather[0].hour[6].condition.icon}
+                  alt="weatherIcon"
+                />
                 <Typography>
                   {forecastWeather[0].hour[6].condition.text}
                 </Typography>
@@ -227,7 +239,10 @@ const Home = () => {
               >
                 <Typography>Afternoon</Typography>
                 <Typography>{forecastWeather[0].hour[12].temp_f}°F</Typography>
-                <Typography>icon</Typography>
+                <img
+                  src={forecastWeather[0].hour[12].condition.icon}
+                  alt="weatherIcon"
+                />
                 <Typography>
                   {forecastWeather[0].hour[12].condition.text}
                 </Typography>
@@ -243,7 +258,10 @@ const Home = () => {
               >
                 <Typography>Evening</Typography>
                 <Typography>{forecastWeather[0].hour[18].temp_f}°F</Typography>
-                <Typography>icon</Typography>
+                <img
+                  src={forecastWeather[0].hour[18].condition.icon}
+                  alt="weatherIcon"
+                />
                 <Typography>
                   {forecastWeather[0].hour[18].condition.text}
                 </Typography>
@@ -259,7 +277,10 @@ const Home = () => {
               >
                 <Typography>Overnight</Typography>
                 <Typography>{forecastWeather[0].hour[0].temp_f}°F</Typography>
-                <Typography>icon</Typography>
+                <img
+                  src={forecastWeather[0].hour[0].condition.icon}
+                  alt="weatherIcon"
+                />
                 <Typography>
                   {forecastWeather[0].hour[0].condition.text}
                 </Typography>
@@ -291,7 +312,10 @@ const Home = () => {
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[0][0]].temp_f}°F
                 </Typography>
-                <Typography>ICON</Typography>
+                <img
+                  src={forecastWeather[0].hour[fiveHour[0][0]].condition.icon}
+                  alt="weatherIcon"
+                />
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[0][0]].condition.text}
                 </Typography>
@@ -312,7 +336,10 @@ const Home = () => {
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[1][0]].temp_f}°F
                 </Typography>
-                <Typography>ICON</Typography>
+                <img
+                  src={forecastWeather[0].hour[fiveHour[1][0]].condition.icon}
+                  alt="weatherIcon"
+                />
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[1][0]].condition.text}
                 </Typography>
@@ -333,7 +360,10 @@ const Home = () => {
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[2][0]].temp_f}°F
                 </Typography>
-                <Typography>ICON</Typography>
+                <img
+                  src={forecastWeather[0].hour[fiveHour[2][0]].condition.icon}
+                  alt="weatherIcon"
+                />
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[2][0]].condition.text}
                 </Typography>
@@ -354,7 +384,10 @@ const Home = () => {
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[3][0]].temp_f}°F
                 </Typography>
-                <Typography>ICON</Typography>
+                <img
+                  src={forecastWeather[0].hour[fiveHour[3][0]].condition.icon}
+                  alt="weatherIcon"
+                />
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[3][0]].condition.text}
                 </Typography>
@@ -375,7 +408,10 @@ const Home = () => {
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[4][0]].temp_f}°F
                 </Typography>
-                <Typography>ICON</Typography>
+                <img
+                  src={forecastWeather[0].hour[fiveHour[4][0]].condition.icon}
+                  alt="weatherIcon"
+                />
                 <Typography>
                   {forecastWeather[0].hour[fiveHour[4][0]].condition.text}
                 </Typography>
@@ -399,6 +435,7 @@ const Home = () => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
                 <Grid>
@@ -407,7 +444,10 @@ const Home = () => {
                   </Typography>
                   <Typography>Feels Like</Typography>
                 </Grid>
-                <Grid>Icon</Grid>
+                <img
+                  src={currentWeather.current.condition.icon}
+                  alt="weatherIcon"
+                />
               </Grid>
             </Grid>
 
@@ -690,6 +730,7 @@ const Home = () => {
             >
               <Grid
                 item
+                xs={4}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -697,16 +738,22 @@ const Home = () => {
                 }}
               >
                 <Typography>Today</Typography>
-                <Typography>{forecastWeather[0].day.maxtemp_f}°F</Typography>
+                <Typography sx={{ fontSize: "1.25em" }}>
+                  {forecastWeather[0].day.maxtemp_f}°F
+                </Typography>
                 <Typography>{forecastWeather[0].day.mintemp_f}°F</Typography>
-                <Typography>ICON</Typography>
-                <Typography>{forecastWeather[0].day.condition.text}</Typography>
+                <img
+                  src={forecastWeather[0].day.condition.icon}
+                  alt="weatherIcon"
+                />
+                {/* <Typography>{forecastWeather[0].day.condition.text}</Typography> */}
                 <Typography>
                   {forecastWeather[0].day.daily_chance_of_rain}%
                 </Typography>
               </Grid>
               <Grid
                 item
+                xs={4}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -716,16 +763,22 @@ const Home = () => {
                 <Typography>
                   {sevenDay[1]} {forecastWeather[1].date.substr(8, 9)}
                 </Typography>
-                <Typography>{forecastWeather[1].day.maxtemp_f}°F</Typography>
+                <Typography sx={{ fontSize: "1.25em" }}>
+                  {forecastWeather[1].day.maxtemp_f}°F
+                </Typography>
                 <Typography>{forecastWeather[1].day.mintemp_f}°F</Typography>
-                <Typography>ICON</Typography>
-                <Typography>{forecastWeather[1].day.condition.text}</Typography>
+                <img
+                  src={forecastWeather[1].day.condition.icon}
+                  alt="weatherIcon"
+                />
+                {/* <Typography>{forecastWeather[1].day.condition.text}</Typography> */}
                 <Typography>
                   {forecastWeather[1].day.daily_chance_of_rain}%
                 </Typography>
               </Grid>
               <Grid
                 item
+                xs={4}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -735,10 +788,15 @@ const Home = () => {
                 <Typography>
                   {sevenDay[2]} {forecastWeather[2].date.substr(8, 9)}
                 </Typography>
-                <Typography>{forecastWeather[2].day.maxtemp_f}°F</Typography>
+                <Typography sx={{ fontSize: "1.25em" }}>
+                  {forecastWeather[2].day.maxtemp_f}°F
+                </Typography>
                 <Typography>{forecastWeather[2].day.mintemp_f}°F</Typography>
-                <Typography>ICON</Typography>
-                <Typography>{forecastWeather[2].day.condition.text}</Typography>
+                <img
+                  src={forecastWeather[2].day.condition.icon}
+                  alt="weatherIcon"
+                />
+                {/* <Typography>{forecastWeather[2].day.condition.text}</Typography> */}
                 <Typography>
                   {forecastWeather[2].day.daily_chance_of_rain}%
                 </Typography>
