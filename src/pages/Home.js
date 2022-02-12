@@ -147,21 +147,21 @@ const Home = () => {
   const getMoonPhaseIcon = (phase) => {
     let moonPhase = phase.split(" ").join("");
     if (moonPhase === "FirstQuarter") {
-      return <img alt="moonPhase" src={FirstQuarter} height="100px" />;
+      return <img alt="moonPhase" src={FirstQuarter} height="75px" />;
     } else if (moonPhase === "FullMoon") {
-      return <img alt="moonPhase" src={FullMoon} height="100px" />;
+      return <img alt="moonPhase" src={FullMoon} height="75px" />;
     } else if (moonPhase === "LastQuarter") {
-      return <img alt="moonPhase" src={LastQuarter} height="100px" />;
+      return <img alt="moonPhase" src={LastQuarter} height="75px" />;
     } else if (moonPhase === "NewMoon") {
-      return <img alt="moonPhase" src={NewMoon} height="100px" />;
+      return <img alt="moonPhase" src={NewMoon} height="75px" />;
     } else if (moonPhase === "WaningQuarter") {
-      return <img alt="moonPhase" src={WaningQuarter} height="100px" />;
+      return <img alt="moonPhase" src={WaningQuarter} height="75px" />;
     } else if (moonPhase === "WaningGibbous") {
-      return <img alt="moonPhase" src={WaningGibbous} height="100px" />;
+      return <img alt="moonPhase" src={WaningGibbous} height="75px" />;
     } else if (moonPhase === "WaxingCrescent") {
-      return <img alt="moonPhase" src={WaxingCrescent} height="100px" />;
+      return <img alt="moonPhase" src={WaxingCrescent} height="75px" />;
     } else if (moonPhase === "WaxingGibbous") {
-      return <img alt="moonPhase" src={WaxingGibbous} height="100px" />;
+      return <img alt="moonPhase" src={WaxingGibbous} height="75px" />;
     }
   };
 
@@ -175,7 +175,7 @@ const Home = () => {
 
   if (loading)
     return (
-      <Box>
+      <Box height="100vh">
         <h1>Grabbing weather data...</h1>
       </Box>
     );
@@ -442,21 +442,43 @@ const Home = () => {
                   src={forecastWeather[0].hour[fiveHour[0][0]].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography sx={{ mb: 0.75 }}>
-                  {forecastWeather[0].hour[fiveHour[0][0]].condition.text}
-                </Typography>
                 <Grid
                   item
                   sx={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
                     alignItems: "center",
+                    height: "4.5em",
                   }}
                 >
-                  <BeachAccessOutlinedIcon />
-                  <Typography>
-                    {forecastWeather[0].hour[fiveHour[0][0]].chance_of_rain}%
-                  </Typography>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {forecastWeather[0].hour[fiveHour[0][0]].condition.text
+                      .split(" ")
+                      .map((word) => (
+                        <Typography key={word}>{word}</Typography>
+                      ))}
+                  </Grid>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <BeachAccessOutlinedIcon />
+                    <Typography>
+                      {forecastWeather[0].hour[fiveHour[0][0]].chance_of_rain}%
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
 
@@ -478,21 +500,43 @@ const Home = () => {
                   src={forecastWeather[0].hour[fiveHour[1][0]].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography sx={{ mb: 0.75 }}>
-                  {forecastWeather[0].hour[fiveHour[1][0]].condition.text}
-                </Typography>
                 <Grid
                   item
                   sx={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
                     alignItems: "center",
+                    height: "4.5em",
                   }}
                 >
-                  <BeachAccessOutlinedIcon />
-                  <Typography>
-                    {forecastWeather[0].hour[fiveHour[1][0]].chance_of_rain}%
-                  </Typography>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {forecastWeather[0].hour[fiveHour[1][0]].condition.text
+                      .split(" ")
+                      .map((word) => (
+                        <Typography key={word}>{word}</Typography>
+                      ))}
+                  </Grid>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <BeachAccessOutlinedIcon />
+                    <Typography>
+                      {forecastWeather[0].hour[fiveHour[1][0]].chance_of_rain}%
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
 
@@ -514,21 +558,43 @@ const Home = () => {
                   src={forecastWeather[0].hour[fiveHour[2][0]].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography sx={{ mb: 0.75 }}>
-                  {forecastWeather[0].hour[fiveHour[2][0]].condition.text}
-                </Typography>
                 <Grid
                   item
                   sx={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
                     alignItems: "center",
+                    height: "4.5em",
                   }}
                 >
-                  <BeachAccessOutlinedIcon />
-                  <Typography>
-                    {forecastWeather[0].hour[fiveHour[2][0]].chance_of_rain}%
-                  </Typography>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {forecastWeather[0].hour[fiveHour[2][0]].condition.text
+                      .split(" ")
+                      .map((word) => (
+                        <Typography key={word}>{word}</Typography>
+                      ))}
+                  </Grid>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <BeachAccessOutlinedIcon />
+                    <Typography>
+                      {forecastWeather[0].hour[fiveHour[2][0]].chance_of_rain}%
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
 
@@ -550,21 +616,43 @@ const Home = () => {
                   src={forecastWeather[0].hour[fiveHour[3][0]].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography sx={{ mb: 0.75 }}>
-                  {forecastWeather[0].hour[fiveHour[3][0]].condition.text}
-                </Typography>
                 <Grid
                   item
                   sx={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
                     alignItems: "center",
+                    height: "4.5em",
                   }}
                 >
-                  <BeachAccessOutlinedIcon />
-                  <Typography>
-                    {forecastWeather[0].hour[fiveHour[3][0]].chance_of_rain}%
-                  </Typography>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {forecastWeather[0].hour[fiveHour[3][0]].condition.text
+                      .split(" ")
+                      .map((word) => (
+                        <Typography key={word}>{word}</Typography>
+                      ))}
+                  </Grid>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <BeachAccessOutlinedIcon />
+                    <Typography>
+                      {forecastWeather[0].hour[fiveHour[3][0]].chance_of_rain}%
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
 
@@ -586,21 +674,36 @@ const Home = () => {
                   src={forecastWeather[0].hour[fiveHour[4][0]].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography sx={{ mb: 0.75 }}>
-                  {forecastWeather[0].hour[fiveHour[4][0]].condition.text}
-                </Typography>
                 <Grid
                   item
                   sx={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
                     alignItems: "center",
+                    height: "4.5em",
                   }}
                 >
-                  <BeachAccessOutlinedIcon />
-                  <Typography>
-                    {forecastWeather[0].hour[fiveHour[4][0]].chance_of_rain}%
-                  </Typography>
+                  <Grid>
+                    {forecastWeather[0].hour[fiveHour[4][0]].condition.text
+                      .split(" ")
+                      .map((word) => (
+                        <Typography key={word}>{word}</Typography>
+                      ))}
+                  </Grid>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <BeachAccessOutlinedIcon />
+                    <Typography>
+                      {forecastWeather[0].hour[fiveHour[4][0]].chance_of_rain}%
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
@@ -959,7 +1062,10 @@ const Home = () => {
               <Grid>
                 {getMoonPhaseIcon(forecastWeather[0].astro.moon_phase)}
               </Grid>
-              <Typography>{forecastWeather[0].astro.moon_phase}</Typography>
+              <Grid>
+                <Typography>Current Moon Phase: </Typography>
+                <Typography>{forecastWeather[0].astro.moon_phase}</Typography>
+              </Grid>
             </Grid>
             <Grid item sx={{ p: 1.5 }}>
               <Grid
