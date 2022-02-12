@@ -15,7 +15,7 @@ function App() {
         backgroundImage: `linear-gradient(135deg, #243746, #5982A1, #8DD0EC)`,
       }}
     >
-      <Grid item xs={12} md={2.5}>
+      <Grid item xs={12} md={5} lg={2.5}>
         <Header />
 
         <Router basemname={`/${process.env.PUBLIC_URL}`}>

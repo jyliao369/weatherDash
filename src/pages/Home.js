@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-import { Grid, Box, Typography, Paper } from "@mui/material";
+import { Grid, Box, Typography, Paper, TextField, Button } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import ThermostatOutlinedIcon from "@mui/icons-material/ThermostatOutlined";
@@ -182,6 +182,21 @@ const Home = () => {
 
   return (
     <Box>
+      <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+        <Grid item sx={{ display: "flex", justifyContent: "center", m: 1 }}>
+          <TextField
+            size="small"
+            sx={{ background: "white", borderRadius: "4px", mr: 1 }}
+          />
+          <Button variant="contained">Search</Button>
+        </Grid>
+        <Grid item sx={{ display: "flex", justifyContent: "center" }}>
+          <Typography sx={{ color: "white" }}>
+            Search City or Zip Code
+          </Typography>
+        </Grid>
+      </Grid>
+
       <ThemeProvider theme={theme}>
         <Grid
           item
@@ -189,6 +204,8 @@ const Home = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            mt: 1,
+            mb: 1,
           }}
         >
           {/* THIS IS JUST GIVES THE BASIC SUMMARY OF TODAYS WEATHER */}
