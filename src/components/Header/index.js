@@ -15,7 +15,9 @@ const Header = () => {
     <Box>
       <ThemeProvider theme={theme}>
         <Grid item sx={{ display: "flex", justifyContent: "center", p: 1 }}>
-          <Typography variant="h1">windie</Typography>
+          <Typography variant="h1" sx={{ color: "white" }}>
+            windie
+          </Typography>
         </Grid>
       </ThemeProvider>
     </Box>

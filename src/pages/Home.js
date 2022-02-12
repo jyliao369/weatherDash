@@ -4,6 +4,25 @@ import { useEffect, useState } from "react";
 import { Grid, Box, Typography, Paper } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+import ThermostatOutlinedIcon from "@mui/icons-material/ThermostatOutlined";
+import AirOutlinedIcon from "@mui/icons-material/AirOutlined";
+import StormOutlinedIcon from "@mui/icons-material/StormOutlined";
+import OpacityOutlinedIcon from "@mui/icons-material/OpacityOutlined";
+import CompressOutlinedIcon from "@mui/icons-material/CompressOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import BeachAccessOutlinedIcon from "@mui/icons-material/BeachAccessOutlined";
+
+import FirstQuarter from "../images/First_Quarter.png";
+import FullMoon from "../images/Full_Moon.png";
+import LastQuarter from "../images/Last_Quarter.png";
+import NewMoon from "../images/New_Moon.png";
+import WaningQuarter from "../images/Waning_Crescent.png";
+import WaningGibbous from "../images/Waning_Gibbous.png";
+import WaxingCrescent from "../images/Waxing_Crescent.png";
+import WaxingGibbous from "../images/Waxing_Gibbous.png";
+
 const Home = () => {
   const [currentWeather, setCurrentWeather] = useState({});
   const [forecastWeather, setForecastWeather] = useState({});
@@ -47,7 +66,10 @@ const Home = () => {
     })();
   }, []);
 
-  console.log(sevenForecast);
+  console.log("forecast");
+  console.log(forecastWeather);
+  console.log("astro");
+  console.log(astroWeather);
 
   let todayDay = Date().split(" ")[0];
   let sevenDay = [];
@@ -122,6 +144,29 @@ const Home = () => {
   };
   getFiveHour();
 
+  const getMoonPhaseIcon = (phase) => {
+    let moonPhase = phase.split(" ").join("");
+    if (moonPhase === "FirstQuarter") {
+      return <img alt="moonPhase" src={FirstQuarter} height="100px" />;
+    } else if (moonPhase === "FullMoon") {
+      return <img alt="moonPhase" src={FullMoon} height="100px" />;
+    } else if (moonPhase === "LastQuarter") {
+      return <img alt="moonPhase" src={LastQuarter} height="100px" />;
+    } else if (moonPhase === "NewMoon") {
+      return <img alt="moonPhase" src={NewMoon} height="100px" />;
+    } else if (moonPhase === "WaningQuarter") {
+      return <img alt="moonPhase" src={WaningQuarter} height="100px" />;
+    } else if (moonPhase === "WaningGibbous") {
+      return <img alt="moonPhase" src={WaningGibbous} height="100px" />;
+    } else if (moonPhase === "WaxingCrescent") {
+      return <img alt="moonPhase" src={WaxingCrescent} height="100px" />;
+    } else if (moonPhase === "WaxingGibbous") {
+      return <img alt="moonPhase" src={WaxingGibbous} height="100px" />;
+    }
+  };
+
+  // getMoonPhaseIcon(astroWeather.moon_phase);
+
   const theme = createTheme();
 
   theme.typography.body1 = {
@@ -140,8 +185,6 @@ const Home = () => {
       <ThemeProvider theme={theme}>
         <Grid
           item
-          xs={12}
-          md={2.5}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -249,7 +292,19 @@ const Home = () => {
                 <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[6].condition.text}
                 </Typography>
-                <Typography>{forecastWeather[0].hour[6].humidity}%</Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <BeachAccessOutlinedIcon />
+                  <Typography>
+                    {forecastWeather[0].hour[6].humidity}%
+                  </Typography>
+                </Grid>
               </Grid>
               <Grid
                 item
@@ -270,7 +325,19 @@ const Home = () => {
                 <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[12].condition.text}
                 </Typography>
-                <Typography>{forecastWeather[0].hour[12].humidity}%</Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <BeachAccessOutlinedIcon />
+                  <Typography>
+                    {forecastWeather[0].hour[12].humidity}%
+                  </Typography>
+                </Grid>
               </Grid>
               <Grid
                 item
@@ -291,7 +358,19 @@ const Home = () => {
                 <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[18].condition.text}
                 </Typography>
-                <Typography>{forecastWeather[0].hour[18].humidity}%</Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <BeachAccessOutlinedIcon />
+                  <Typography>
+                    {forecastWeather[0].hour[18].humidity}%
+                  </Typography>
+                </Grid>
               </Grid>
               <Grid
                 item
@@ -312,7 +391,19 @@ const Home = () => {
                 <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[0].condition.text}
                 </Typography>
-                <Typography>{forecastWeather[0].hour[0].humidity}%</Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <BeachAccessOutlinedIcon />
+                  <Typography>
+                    {forecastWeather[0].hour[0].humidity}%
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
           </Paper>
@@ -354,9 +445,19 @@ const Home = () => {
                 <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[fiveHour[0][0]].condition.text}
                 </Typography>
-                <Typography>
-                  {forecastWeather[0].hour[fiveHour[0][0]].chance_of_rain}%
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <BeachAccessOutlinedIcon />
+                  <Typography>
+                    {forecastWeather[0].hour[fiveHour[0][0]].chance_of_rain}%
+                  </Typography>
+                </Grid>
               </Grid>
 
               <Grid
@@ -380,9 +481,19 @@ const Home = () => {
                 <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[fiveHour[1][0]].condition.text}
                 </Typography>
-                <Typography>
-                  {forecastWeather[0].hour[fiveHour[1][0]].chance_of_rain}%
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <BeachAccessOutlinedIcon />
+                  <Typography>
+                    {forecastWeather[0].hour[fiveHour[1][0]].chance_of_rain}%
+                  </Typography>
+                </Grid>
               </Grid>
 
               <Grid
@@ -406,9 +517,19 @@ const Home = () => {
                 <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[fiveHour[2][0]].condition.text}
                 </Typography>
-                <Typography>
-                  {forecastWeather[0].hour[fiveHour[2][0]].chance_of_rain}%
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <BeachAccessOutlinedIcon />
+                  <Typography>
+                    {forecastWeather[0].hour[fiveHour[2][0]].chance_of_rain}%
+                  </Typography>
+                </Grid>
               </Grid>
 
               <Grid
@@ -432,9 +553,19 @@ const Home = () => {
                 <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[fiveHour[3][0]].condition.text}
                 </Typography>
-                <Typography>
-                  {forecastWeather[0].hour[fiveHour[3][0]].chance_of_rain}%
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <BeachAccessOutlinedIcon />
+                  <Typography>
+                    {forecastWeather[0].hour[fiveHour[3][0]].chance_of_rain}%
+                  </Typography>
+                </Grid>
               </Grid>
 
               <Grid
@@ -458,9 +589,19 @@ const Home = () => {
                 <Typography sx={{ mb: 0.75 }}>
                   {forecastWeather[0].hour[fiveHour[4][0]].condition.text}
                 </Typography>
-                <Typography>
-                  {forecastWeather[0].hour[fiveHour[4][0]].chance_of_rain}%
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <BeachAccessOutlinedIcon />
+                  <Typography>
+                    {forecastWeather[0].hour[fiveHour[4][0]].chance_of_rain}%
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
           </Paper>
@@ -517,7 +658,10 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography sx={{ fontSize: "1.1em" }}>High / Low</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <ThermostatOutlinedIcon />{" "}
+                  <Typography sx={{ fontSize: "1.1em" }}>High / Low</Typography>
+                </Grid>
                 <Typography sx={{ fontSize: "1.1em" }}>
                   {forecastWeather[0].day.maxtemp_f}°F /{" "}
                   {forecastWeather[0].day.mintemp_f}°F
@@ -534,9 +678,12 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography sx={{ fontSize: "1.1em" }}>
-                  Wind Direction
-                </Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <AirOutlinedIcon />{" "}
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    Wind Direction
+                  </Typography>
+                </Grid>
                 <Typography sx={{ fontSize: "1.1em" }}>
                   {currentWeather.current.wind_dir}
                 </Typography>
@@ -552,7 +699,10 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography sx={{ fontSize: "1.1em" }}>Wind Speed</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <AirOutlinedIcon />{" "}
+                  <Typography sx={{ fontSize: "1.1em" }}>Wind Speed</Typography>
+                </Grid>
                 <Typography sx={{ fontSize: "1.1em" }}>
                   {currentWeather.current.wind_mph} mph
                 </Typography>
@@ -568,7 +718,10 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography sx={{ fontSize: "1.1em" }}>Gust Speed</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <StormOutlinedIcon />{" "}
+                  <Typography sx={{ fontSize: "1.1em" }}>Gust Speed</Typography>
+                </Grid>
                 <Typography sx={{ fontSize: "1.1em" }}>
                   {currentWeather.current.gust_mph} mph
                 </Typography>
@@ -584,7 +737,10 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography sx={{ fontSize: "1.1em" }}>Humidity</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <OpacityOutlinedIcon />{" "}
+                  <Typography sx={{ fontSize: "1.1em" }}>Humidity</Typography>
+                </Grid>
                 <Typography sx={{ fontSize: "1.1em" }}>
                   {currentWeather.current.humidity}%
                 </Typography>
@@ -600,7 +756,10 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography sx={{ fontSize: "1.1em" }}>Pressure</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <CompressOutlinedIcon />{" "}
+                  <Typography sx={{ fontSize: "1.1em" }}>Pressure</Typography>
+                </Grid>
                 <Typography sx={{ fontSize: "1.1em" }}>
                   {currentWeather.current.pressure_in} in.
                 </Typography>
@@ -616,7 +775,10 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography sx={{ fontSize: "1.1em" }}>UV Index</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <LightModeOutlinedIcon />{" "}
+                  <Typography sx={{ fontSize: "1.1em" }}>UV Index</Typography>
+                </Grid>
                 <Typography sx={{ fontSize: "1.1em" }}>
                   {currentWeather.current.uv} out of 10
                 </Typography>
@@ -632,7 +794,10 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography sx={{ fontSize: "1.1em" }}>Visibility</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <VisibilityOutlinedIcon />{" "}
+                  <Typography sx={{ fontSize: "1.1em" }}>Visibility</Typography>
+                </Grid>
                 <Typography sx={{ fontSize: "1.1em" }}>
                   {currentWeather.current.vis_miles} miles
                 </Typography>
@@ -648,7 +813,10 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography sx={{ fontSize: "1.1em" }}>Moon Phase</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <DarkModeOutlinedIcon />{" "}
+                  <Typography sx={{ fontSize: "1.1em" }}>Moon Phase</Typography>
+                </Grid>
                 <Typography sx={{ fontSize: "1.1em" }}>
                   {forecastWeather[0].astro.moon_phase}
                 </Typography>
@@ -778,6 +946,21 @@ const Home = () => {
                   currentWeather.location.region.split(" ")[1].charAt(0)}
               </Typography>
             </Grid>
+            <Grid
+              item
+              sx={{
+                p: 1.5,
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+              }}
+            >
+              <Grid>
+                {getMoonPhaseIcon(forecastWeather[0].astro.moon_phase)}
+              </Grid>
+              <Typography>{forecastWeather[0].astro.moon_phase}</Typography>
+            </Grid>
             <Grid item sx={{ p: 1.5 }}>
               <Grid
                 item
@@ -898,9 +1081,19 @@ const Home = () => {
                   alt="weatherIcon"
                 />
                 {/* <Typography>{forecastWeather[0].day.condition.text}</Typography> */}
-                <Typography>
-                  {forecastWeather[0].day.daily_chance_of_rain}%
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <BeachAccessOutlinedIcon />
+                  <Typography>
+                    {forecastWeather[0].day.daily_chance_of_rain}%
+                  </Typography>
+                </Grid>
               </Grid>
               <Grid
                 item
@@ -923,9 +1116,19 @@ const Home = () => {
                   alt="weatherIcon"
                 />
                 {/* <Typography>{forecastWeather[1].day.condition.text}</Typography> */}
-                <Typography>
-                  {forecastWeather[1].day.daily_chance_of_rain}%
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <BeachAccessOutlinedIcon />
+                  <Typography>
+                    {forecastWeather[1].day.daily_chance_of_rain}%
+                  </Typography>
+                </Grid>
               </Grid>
               <Grid
                 item
@@ -948,9 +1151,19 @@ const Home = () => {
                   alt="weatherIcon"
                 />
                 {/* <Typography>{forecastWeather[2].day.condition.text}</Typography> */}
-                <Typography>
-                  {forecastWeather[2].day.daily_chance_of_rain}%
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <BeachAccessOutlinedIcon />
+                  <Typography>
+                    {forecastWeather[2].day.daily_chance_of_rain}%
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
           </Paper>

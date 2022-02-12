@@ -7,8 +7,15 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <Box>
-      <Grid>
+    <Box
+      item
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        backgroundImage: `linear-gradient(135deg, #243746, #5982A1, #8DD0EC)`,
+      }}
+    >
+      <Grid item xs={12} md={2.5}>
         <Header />
 
         <Router basemname={`/${process.env.PUBLIC_URL}`}>
