@@ -1322,6 +1322,7 @@ const Home = () => {
                   </Typography>
                 </Grid>
               </Grid>
+
               <Grid
                 item
                 xs={4}
@@ -1414,6 +1415,8 @@ const Home = () => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  alignItems: "center",
+                  mb: 1,
                 }}
               >
                 <Grid item sx={{ display: "flex", flexDirection: "row" }}>
@@ -1423,9 +1426,18 @@ const Home = () => {
                     {sevenForecast.data[0].min_temp}
                   </Typography>
                 </Grid>
-                <Typography>
-                  {sevenForecast.data[0].weather.description}
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    width: "7.25em",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <Typography>
+                    {sevenForecast.data[0].weather.description}
+                  </Typography>
+                </Grid>
               </Grid>
 
               <Grid
@@ -1433,7 +1445,9 @@ const Home = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
+                  justifyContent: "space-between",
                   alignItems: "center",
+                  mb: 1,
                 }}
               >
                 <Grid item sx={{ display: "flex", flexDirection: "row" }}>
@@ -1446,9 +1460,18 @@ const Home = () => {
                     {sevenForecast.data[1].min_temp}
                   </Typography>
                 </Grid>
-                <Typography>
-                  {sevenForecast.data[1].weather.description}
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    width: "7.25em",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <Typography>
+                    {sevenForecast.data[1].weather.description}
+                  </Typography>
+                </Grid>
               </Grid>
 
               <Grid
@@ -1457,6 +1480,8 @@ const Home = () => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  alignItems: "center",
+                  mb: 1,
                 }}
               >
                 <Grid item sx={{ display: "flex", flexDirection: "row" }}>
@@ -1469,9 +1494,18 @@ const Home = () => {
                     {sevenForecast.data[2].min_temp}
                   </Typography>
                 </Grid>
-                <Typography>
-                  {sevenForecast.data[2].weather.description}
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    width: "7.25em",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <Typography>
+                    {sevenForecast.data[2].weather.description}
+                  </Typography>
+                </Grid>
               </Grid>
 
               <Grid
@@ -1480,6 +1514,8 @@ const Home = () => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  alignItems: "center",
+                  mb: 1,
                 }}
               >
                 <Grid item sx={{ display: "flex", flexDirection: "row" }}>
@@ -1492,9 +1528,18 @@ const Home = () => {
                     {sevenForecast.data[3].min_temp}
                   </Typography>
                 </Grid>
-                <Typography>
-                  {sevenForecast.data[3].weather.description}
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    width: "7.25em",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <Typography>
+                    {sevenForecast.data[3].weather.description}
+                  </Typography>
+                </Grid>
               </Grid>
 
               <Grid
@@ -1503,6 +1548,8 @@ const Home = () => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  alignItems: "center",
+                  mb: 1,
                 }}
               >
                 <Grid item sx={{ display: "flex", flexDirection: "row" }}>
@@ -1515,9 +1562,18 @@ const Home = () => {
                     {sevenForecast.data[4].min_temp}
                   </Typography>
                 </Grid>
-                <Typography>
-                  {sevenForecast.data[4].weather.description}
-                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    width: "7.25em",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <Typography>
+                    {sevenForecast.data[4].weather.description}
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
           </Paper>
