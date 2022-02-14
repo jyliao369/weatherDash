@@ -13,6 +13,7 @@ import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import BeachAccessOutlinedIcon from "@mui/icons-material/BeachAccessOutlined";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 import FirstQuarter from "../images/First_Quarter.png";
 import FullMoon from "../images/Full_Moon.png";
@@ -31,7 +32,13 @@ const Home = () => {
   const [sevenForecast, setSevenForecast] = useState({});
   const [loading, setLoading] = useState(true);
 
-  let city = "Lexington,NC";
+  let currentCity = "Raleigh";
+  const [city, setCity] = useState(currentCity);
+  const [searchedCity, setSearchedCity] = useState("");
+
+  const searchCity = async () => {
+    await setCity(searchedCity);
+  };
 
   let main_key = process.env.REACT_APP_API_KEY;
   const current_URL = `https://api.weatherapi.com/v1/current.json?key=${main_key}&q=${city}`;
@@ -64,12 +71,14 @@ const Home = () => {
         console.log(e);
       }
     })();
-  }, []);
-
-  console.log("forecast");
-  console.log(forecastWeather);
-  console.log("astro");
-  console.log(astroWeather);
+  }, [
+    current_URL,
+    forecast_URL,
+    airQuality_URL,
+    astro_URL,
+    sevenForecast_URL,
+    city,
+  ]);
 
   let todayDay = Date().split(" ")[0];
   let sevenDay = [];
@@ -165,8 +174,6 @@ const Home = () => {
     }
   };
 
-  // getMoonPhaseIcon(astroWeather.moon_phase);
-
   const theme = createTheme();
 
   theme.typography.body1 = {
@@ -187,8 +194,11 @@ const Home = () => {
           <TextField
             size="small"
             sx={{ background: "white", borderRadius: "4px", mr: 1 }}
+            onChange={(event) => setSearchedCity(event.target.value)}
           />
-          <Button variant="contained">Search</Button>
+          <Button onClick={() => searchCity()} variant="contained">
+            <SearchOutlinedIcon />
+          </Button>
         </Grid>
         <Grid item sx={{ display: "flex", justifyContent: "center" }}>
           <Typography sx={{ color: "white" }}>
@@ -212,10 +222,13 @@ const Home = () => {
           <Paper sx={{ m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
             <Grid>
               <Grid item sx={{ p: 1.5, background: "#000040", opacity: ".75" }}>
-                <Typography sx={{ fontSize: "1.2em", color: "white" }}>
-                  {city.split(",")[0]},{" "}
-                  {currentWeather.location.region.split(" ")[0].charAt(0) +
-                    currentWeather.location.region.split(" ")[1].charAt(0)}{" "}
+                <Typography
+                  sx={{ fontSize: "1.2em", color: "white", mb: "5px" }}
+                >
+                  {currentWeather.location.name},{" "}
+                  {currentWeather.location.region}
+                </Typography>
+                <Typography sx={{ fontSize: "1em", color: "white" }}>
                   As of {currentWeather.location.localtime}
                 </Typography>
               </Grid>
@@ -274,9 +287,7 @@ const Home = () => {
           <Paper sx={{ m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
             <Grid item sx={{ p: 1.5, pb: 0 }}>
               <Typography sx={{ fontSize: "1.2em" }}>
-                {currentWeather.location.name},{" "}
-                {currentWeather.location.region.split(" ")[0].charAt(0) +
-                  currentWeather.location.region.split(" ")[1].charAt(0)}{" "}
+                {currentWeather.location.name}, {currentWeather.location.region}{" "}
                 Forecast
               </Typography>
             </Grid>
@@ -306,21 +317,43 @@ const Home = () => {
                   src={forecastWeather[0].hour[6].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography sx={{ mb: 0.75 }}>
-                  {forecastWeather[0].hour[6].condition.text}
-                </Typography>
                 <Grid
                   item
                   sx={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
                     alignItems: "center",
+                    height: "5.5em",
                   }}
                 >
-                  <BeachAccessOutlinedIcon />
-                  <Typography>
-                    {forecastWeather[0].hour[6].humidity}%
-                  </Typography>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {forecastWeather[0].hour[6].condition.text
+                      .split(" ")
+                      .map((word) => (
+                        <Typography key={word}>{word}</Typography>
+                      ))}
+                  </Grid>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <BeachAccessOutlinedIcon />
+                    <Typography>
+                      {forecastWeather[0].hour[6].humidity}%
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
               <Grid
@@ -339,21 +372,43 @@ const Home = () => {
                   src={forecastWeather[0].hour[12].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography sx={{ mb: 0.75 }}>
-                  {forecastWeather[0].hour[12].condition.text}
-                </Typography>
                 <Grid
                   item
                   sx={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
                     alignItems: "center",
+                    height: "5.5em",
                   }}
                 >
-                  <BeachAccessOutlinedIcon />
-                  <Typography>
-                    {forecastWeather[0].hour[12].humidity}%
-                  </Typography>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {forecastWeather[0].hour[12].condition.text
+                      .split(" ")
+                      .map((word) => (
+                        <Typography key={word}>{word}</Typography>
+                      ))}
+                  </Grid>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <BeachAccessOutlinedIcon />
+                    <Typography>
+                      {forecastWeather[0].hour[12].humidity}%
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
               <Grid
@@ -372,21 +427,43 @@ const Home = () => {
                   src={forecastWeather[0].hour[18].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography sx={{ mb: 0.75 }}>
-                  {forecastWeather[0].hour[18].condition.text}
-                </Typography>
                 <Grid
                   item
                   sx={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
                     alignItems: "center",
+                    height: "5.5em",
                   }}
                 >
-                  <BeachAccessOutlinedIcon />
-                  <Typography>
-                    {forecastWeather[0].hour[18].humidity}%
-                  </Typography>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {forecastWeather[0].hour[18].condition.text
+                      .split(" ")
+                      .map((word) => (
+                        <Typography key={word}>{word}</Typography>
+                      ))}
+                  </Grid>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <BeachAccessOutlinedIcon />
+                    <Typography>
+                      {forecastWeather[0].hour[18].humidity}%
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
               <Grid
@@ -405,21 +482,43 @@ const Home = () => {
                   src={forecastWeather[0].hour[0].condition.icon}
                   alt="weatherIcon"
                 />
-                <Typography sx={{ mb: 0.75 }}>
-                  {forecastWeather[0].hour[0].condition.text}
-                </Typography>
                 <Grid
                   item
                   sx={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
                     alignItems: "center",
+                    height: "5.5em",
                   }}
                 >
-                  <BeachAccessOutlinedIcon />
-                  <Typography>
-                    {forecastWeather[0].hour[0].humidity}%
-                  </Typography>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {forecastWeather[0].hour[0].condition.text
+                      .split(" ")
+                      .map((word) => (
+                        <Typography key={word}>{word}</Typography>
+                      ))}
+                  </Grid>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <BeachAccessOutlinedIcon />
+                    <Typography>
+                      {forecastWeather[0].hour[0].humidity}%
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
@@ -466,7 +565,7 @@ const Home = () => {
                     flexDirection: "column",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    height: "4.5em",
+                    height: "5.5em",
                   }}
                 >
                   <Grid
@@ -524,7 +623,7 @@ const Home = () => {
                     flexDirection: "column",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    height: "4.5em",
+                    height: "5.5em",
                   }}
                 >
                   <Grid
@@ -582,7 +681,7 @@ const Home = () => {
                     flexDirection: "column",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    height: "4.5em",
+                    height: "5.5em",
                   }}
                 >
                   <Grid
@@ -640,7 +739,7 @@ const Home = () => {
                     flexDirection: "column",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    height: "4.5em",
+                    height: "5.5em",
                   }}
                 >
                   <Grid
@@ -698,10 +797,17 @@ const Home = () => {
                     flexDirection: "column",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    height: "4.5em",
+                    height: "5.5em",
                   }}
                 >
-                  <Grid>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
                     {forecastWeather[0].hour[fiveHour[4][0]].condition.text
                       .split(" ")
                       .map((word) => (
@@ -735,8 +841,7 @@ const Home = () => {
               <Grid>
                 <Typography sx={{ fontSize: "1.2em" }}>
                   Weather Today in {currentWeather.location.name},{" "}
-                  {currentWeather.location.region.split(" ")[0].charAt(0) +
-                    currentWeather.location.region.split(" ")[1].charAt(0)}
+                  {currentWeather.location.region}
                 </Typography>
               </Grid>
               <Grid
@@ -1062,8 +1167,7 @@ const Home = () => {
             <Grid item sx={{ p: 1.5 }}>
               <Typography sx={{ fontSize: "1.2em" }}>
                 Astronomy in {currentWeather.location.name},{" "}
-                {currentWeather.location.region.split(" ")[0].charAt(0) +
-                  currentWeather.location.region.split(" ")[1].charAt(0)}
+                {currentWeather.location.region}
               </Typography>
             </Grid>
             <Grid
@@ -1292,105 +1396,125 @@ const Home = () => {
           </Paper>
 
           {/* THIS FOR 7 DAY FORECAST */}
-          <Paper sx={{ p: 2, m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
-            <Typography>5-Day Forecast</Typography>
+          <Paper sx={{ m: 1, mr: 1.5, ml: 1.5 }} elevation={5}>
+            <Grid item sx={{ p: 1.5, pb: 0 }}>
+              <Typography>5-Day Forecast</Typography>
+            </Grid>
             <Grid
               item
               sx={{
+                p: 1.5,
                 display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
+                flexDirection: "column",
               }}
             >
               <Grid
                 item
-                xs={2.3}
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 }}
               >
-                <Typography>Today</Typography>
-                <Typography>{sevenForecast.data[0].max_temp}</Typography>
-                <Typography>{sevenForecast.data[0].min_temp}</Typography>
-                <Typography>ICON</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <Typography>Today</Typography>
+                  <Typography>
+                    {sevenForecast.data[0].max_temp} /{" "}
+                    {sevenForecast.data[0].min_temp}
+                  </Typography>
+                </Grid>
                 <Typography>
                   {sevenForecast.data[0].weather.description}
                 </Typography>
               </Grid>
+
               <Grid
                 item
-                xs={2.3}
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
+                  flexDirection: "row",
                   alignItems: "center",
                 }}
               >
-                <Typography>
-                  {sevenDay[1]} {sevenForecast.data[1].valid_date.substr(8, 9)}
-                </Typography>
-                <Typography>{sevenForecast.data[1].max_temp}</Typography>
-                <Typography>{sevenForecast.data[1].min_temp}</Typography>
-                <Typography>ICON</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <Typography>
+                    {sevenDay[1]}{" "}
+                    {sevenForecast.data[1].valid_date.substr(8, 9)}
+                  </Typography>
+                  <Typography>
+                    {sevenForecast.data[1].max_temp} /{" "}
+                    {sevenForecast.data[1].min_temp}
+                  </Typography>
+                </Grid>
                 <Typography>
                   {sevenForecast.data[1].weather.description}
                 </Typography>
               </Grid>
+
               <Grid
                 item
-                xs={2.3}
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 }}
               >
-                <Typography>
-                  {sevenDay[2]} {sevenForecast.data[2].valid_date.substr(8, 9)}
-                </Typography>
-                <Typography>{sevenForecast.data[2].max_temp}</Typography>
-                <Typography>{sevenForecast.data[2].min_temp}</Typography>
-                <Typography>ICON</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <Typography>
+                    {sevenDay[2]}{" "}
+                    {sevenForecast.data[2].valid_date.substr(8, 9)}
+                  </Typography>
+                  <Typography>
+                    {sevenForecast.data[2].max_temp} /{" "}
+                    {sevenForecast.data[2].min_temp}
+                  </Typography>
+                </Grid>
                 <Typography>
                   {sevenForecast.data[2].weather.description}
                 </Typography>
               </Grid>
+
               <Grid
                 item
-                xs={2.3}
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 }}
               >
-                <Typography>
-                  {sevenDay[3]} {sevenForecast.data[3].valid_date.substr(8, 9)}
-                </Typography>
-                <Typography>{sevenForecast.data[3].max_temp}</Typography>
-                <Typography>{sevenForecast.data[3].min_temp}</Typography>
-                <Typography>ICON</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <Typography>
+                    {sevenDay[3]}{" "}
+                    {sevenForecast.data[3].valid_date.substr(8, 9)}
+                  </Typography>
+                  <Typography>
+                    {sevenForecast.data[3].max_temp} /{" "}
+                    {sevenForecast.data[3].min_temp}
+                  </Typography>
+                </Grid>
                 <Typography>
                   {sevenForecast.data[3].weather.description}
                 </Typography>
               </Grid>
+
               <Grid
                 item
-                xs={2.3}
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 }}
               >
-                <Typography>
-                  {sevenDay[4]} {sevenForecast.data[4].valid_date.substr(8, 9)}
-                </Typography>
-                <Typography>{sevenForecast.data[4].max_temp}</Typography>
-                <Typography>{sevenForecast.data[4].min_temp}</Typography>
-                <Typography>ICON</Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <Typography>
+                    {sevenDay[4]}{" "}
+                    {sevenForecast.data[4].valid_date.substr(8, 9)}
+                  </Typography>
+                  <Typography>
+                    {sevenForecast.data[4].max_temp} /{" "}
+                    {sevenForecast.data[4].min_temp}
+                  </Typography>
+                </Grid>
                 <Typography>
                   {sevenForecast.data[4].weather.description}
                 </Typography>
