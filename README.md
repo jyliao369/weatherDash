@@ -68,6 +68,6 @@ N/A
 
 ## Live Links
 
-Github Repo: https://github.com/jyliao369/ReadMe-Generator#installation
+Github Repo: https://github.com/jyliao369/weatherDash
 
-Deployed Link: https://jyliao369.github.io/ReadMe-Generator/
+Deployed Link: https://jyliao369.github.io/weatherDash/#/
