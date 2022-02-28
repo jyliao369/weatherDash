@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+## Project Title: windie - Weather Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  ## Description:
+  The idea of this application was to create a simple weather application that gather various data on the weather of your location. The application uses third party APIs that gathers detail on various locations. These informations include the daily highs and lows, the humidity, dew point, and other important weather details. The application can also provide details such as air quality and astrological information like moon phase, time for sunrise and sunset and many more all provided through a third party API.
 
-## Available Scripts
+  ## Table of Contents
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Contributors](#contributors)
+  * [License](#license)
+  * [Tests](#tests)
+  * [Questions](#questions)
+  
+  ## Installation
+  -- What technologies did the application require in order to run smoothly and effectively?--
 
-In the project directory, you can run:
+  This application is a typical Full-Stack application. It uses React.JS as a framework for the front end and the logic of application which utilzies the Javascript. The application uses two thrid party APIs to gather data. Using two APIs provides more details and also provides hourly and daily weather information. As for the Front-End styling, the application uses Material UI to create its styling.
 
-### `npm start`
+  ## Usage
+  -- What is the application used for? --
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  This can be used by anyone. Any user can look up a city found in the API's database.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  ## License
+  -- Are there any license the application has? --
 
-### `npm test`
+  This Application is covered by the MIT license.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  [License Information](https://opensource.org/licenses/MIT)
 
-### `npm run build`
+  ![badge](https://img.shields.io/static/v1?label=License&message=MIT&color=success)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  ## Contributors
+  -- Were there any contributors to the application/project --
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  Contributors: No - This is a solo effort project.
 
-### `npm run eject`
+  ## Tests
+  -- How can we test the application --
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ This application can be run in the client browser.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  ## Questions
+  -- Have any questions? --
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  Please reach out to me if you have any questions. Contact me at: jyliao369@gmail.com
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  -- Want to see the repo of the project --
 
-## Learn More
+  Interested in seeing other projects I have worked on? My repository can be accessed here: 
+  https://github.com/jyliao369
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+  ## Demonstration
+  -- Demonstration of the application in VS Code --
+  ![Demonstration](screenshots/Demo-VS.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+  ## Screenshots
+  -- Basic Code of Questions --
+  ![Questions](screenshots/screenshot1.jpg)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+  -- First Test on VS --
+  ![First Test](screenshots/screenshot2.jpg)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+  -- ReadMe Template --
+  ![Template of the markdown File](screenshots/screenshot3.jpg)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+  -- Preview of ReadMe --
+  ![Preview in VS](screenshots/screenshot4.jpg)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  ## Live Links
+
+  Github Repo: https://github.com/jyliao369/ReadMe-Generator#installation
+
+  Deployed Link: https://jyliao369.github.io/ReadMe-Generator/
+
+  
