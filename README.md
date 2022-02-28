@@ -1,85 +1,73 @@
 ## Project Title: windie - Weather Application
 
-  ## Description:
-  The idea of this application was to create a simple weather application that gather various data on the weather of your location. The application uses third party APIs that gathers detail on various locations. These informations include the daily highs and lows, the humidity, dew point, and other important weather details. The application can also provide details such as air quality and astrological information like moon phase, time for sunrise and sunset and many more all provided through a third party API.
+## Description:
 
-  ## Table of Contents
-  * [Installation](#installation)
-  * [Usage](#usage)
-  * [Contributors](#contributors)
-  * [License](#license)
-  * [Tests](#tests)
-  * [Questions](#questions)
-  
-  ## Installation
-  -- What technologies did the application require in order to run smoothly and effectively?--
+The idea of this application was to create a simple weather application that gather various data on the weather of your location. The application uses third party APIs that gathers detail on various locations. These informations include the daily highs and lows, the humidity, dew point, and other important weather details. The application can also provide details such as air quality and astrological information like moon phase, time for sunrise and sunset and many more all provided through a third party API.
 
-  This application is a typical Full-Stack application. It uses React.JS as a framework for the front end and the logic of application which utilzies the Javascript. The application uses two thrid party APIs to gather data. Using two APIs provides more details and also provides hourly and daily weather information. As for the Front-End styling, the application uses Material UI to create its styling.
+## Table of Contents
 
-  ## Usage
-  -- What is the application used for? --
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributors](#contributors)
+- [License](#license)
+- [Tests](#tests)
+- [Questions](#questions)
 
-  This can be used by anyone. Any user can look up a city found in the API's database.
+## Installation
 
-  ## License
-  -- Are there any license the application has? --
+-- What technologies did the application require in order to run smoothly and effectively?--
 
-  This Application is covered by the MIT license.
+This application is a typical Full-Stack application. It uses React.JS as a framework for the front end and the logic of application which utilzies the Javascript. The application uses two thrid party APIs to gather data. Using two APIs provides more details and also provides hourly and daily weather information. As for the Front-End styling, the application uses Material UI to create its styling.
 
-  [License Information](https://opensource.org/licenses/MIT)
+## Usage
 
-  ![badge](https://img.shields.io/static/v1?label=License&message=MIT&color=success)
+-- What is the application used for? --
 
+This can be used by anyone. Any user can look up a city found in the API's database.
 
-  ## Contributors
-  -- Were there any contributors to the application/project --
+## License
 
-  Contributors: No - This is a solo effort project.
+-- Are there any license the application has? --
 
-  ## Tests
-  -- How can we test the application --
+This Application is covered by the MIT license.
 
- This application can be run in the client browser.
+[License Information](https://opensource.org/licenses/MIT)
 
-  ## Questions
-  -- Have any questions? --
+![badge](https://img.shields.io/static/v1?label=License&message=MIT&color=success)
 
-  Please reach out to me if you have any questions. Contact me at: jyliao369@gmail.com
+## Contributors
 
-  -- Want to see the repo of the project --
+-- Were there any contributors to the application/project --
 
-  Interested in seeing other projects I have worked on? My repository can be accessed here: 
-  https://github.com/jyliao369
+Contributors: No - This is a solo effort project.
 
+## Tests
 
+-- How can we test the application --
 
-  ## Demonstration
-  -- Demonstration of the application in VS Code --
-  ![Demonstration](screenshots/Demo-VS.gif)
+This application can be run in the client browser.
 
+## Questions
 
-  ## Screenshots
-  -- Basic Code of Questions --
-  ![Questions](screenshots/screenshot1.jpg)
+-- Have any questions? --
 
+Please reach out to me if you have any questions. Contact me at: jyliao369@gmail.com
 
-  -- First Test on VS --
-  ![First Test](screenshots/screenshot2.jpg)
+-- Want to see the repo of the project --
 
+Interested in seeing other projects I have worked on? My repository can be accessed here:
+https://github.com/jyliao369
 
-  -- ReadMe Template --
-  ![Template of the markdown File](screenshots/screenshot3.jpg)
+## Demonstration
 
+N/A
 
-  -- Preview of ReadMe --
-  ![Preview in VS](screenshots/screenshot4.jpg)
+## Screenshots
 
+N/A
 
+## Live Links
 
-  ## Live Links
+Github Repo: https://github.com/jyliao369/ReadMe-Generator#installation
 
-  Github Repo: https://github.com/jyliao369/ReadMe-Generator#installation
-
-  Deployed Link: https://jyliao369.github.io/ReadMe-Generator/
-
-  
+Deployed Link: https://jyliao369.github.io/ReadMe-Generator/
