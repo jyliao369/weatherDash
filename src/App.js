@@ -10,22 +10,15 @@ function App() {
     <Box
       item
       sx={{
-        display: "flex",
-        justifyContent: "center",
-        backgroundImage: `linear-gradient(135deg, #243746, #5982A1, #8DD0EC)`,
+        backgroundImage: `linear-gradient(135deg, #243746, #5982A1, #A6D3D3)`,
       }}
     >
-      <Grid item xs={12} md={5} lg={2.5}>
-        <Header />
-
-        <Router basemname={`/${process.env.PUBLIC_URL}`}>
-          <Route exact path="/">
-            <Home />
-          </Route>
-        </Router>
-
-        <Footer />
-      </Grid>
+      <Header />
+      <Router basename={`/${process.env.PUBLIC_URL}`}>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Router>
     </Box>
   );
 }
