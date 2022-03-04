@@ -220,12 +220,14 @@ const Home = () => {
             </Button>
           </Grid>
           <br />
-          <br />
 
           {/* THIS IS JUST GIVES THE BASIC SUMMARY OF TODAYS WEATHER */}
 
           <Paper elevation={5}>
-            <Grid item sx={{ background: "#000040", opacity: ".75" }}>
+            <Grid
+              item
+              sx={{ background: "#000040", opacity: ".75", p: "10px" }}
+            >
               <Typography sx={{ fontSize: "1.2em", color: "white", mb: "5px" }}>
                 {currentWeather.location.name}, {currentWeather.location.region}
               </Typography>
@@ -234,7 +236,14 @@ const Home = () => {
               </Typography>
             </Grid>
 
-            <Grid sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                p: "10px",
+              }}
+            >
               <Grid
                 item
                 sx={{
@@ -266,20 +275,26 @@ const Home = () => {
               </Grid>
             </Grid>
           </Paper>
-
-          <br />
           <br />
 
           {/* THIS IS FOR TODAYS FORCAST */}
           <Paper elevation={5}>
-            <Grid item>
+            <Grid item sx={{ p: "10px" }}>
               <Typography sx={{ fontSize: "1.2em" }}>
                 {currentWeather.location.name}, {currentWeather.location.region}{" "}
                 Forecast
               </Typography>
             </Grid>
 
-            <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                p: "10px",
+              }}
+            >
               <Grid
                 item
                 sx={{
@@ -503,17 +518,23 @@ const Home = () => {
             </Grid>
           </Paper>
           <br />
-          <br />
 
           {/* THIS SHOWS THE HOURLY FORECAST */}
           <Paper elevation={5}>
-            <Grid item>
+            <Grid item sx={{ p: "10px" }}>
               <Typography sx={{ fontSize: "1.2em" }}>
                 Hourly Forecast
               </Typography>
             </Grid>
 
-            <Grid sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                p: "10px",
+              }}
+            >
               <Grid
                 item
                 sx={{
@@ -806,80 +827,257 @@ const Home = () => {
             </Grid>
           </Paper>
           <br />
-          <br />
 
           {/* THIS SHOWS THE WEATHER CONDIIONS FOR THE DAY AND MINOR DETAILS */}
           <Paper elevation={5}>
-            <Grid>
+            <Grid item sx={{ p: "10px" }}>
               <Typography sx={{ fontSize: "1.2em" }}>
                 Weather Today in {currentWeather.location.name},{" "}
                 {currentWeather.location.region}
               </Typography>
             </Grid>
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Grid item>
-                <Typography sx={{ fontSize: "2.25em" }}>
-                  {currentWeather.current.feelslike_f}°F
-                </Typography>
-                <Typography sx={{ fontSize: "1.25em" }}>Feels Like</Typography>
-              </Grid>
-              <img
-                src={currentWeather.current.condition.icon}
-                alt="weatherIcon"
-                height="100px"
-                width="100px"
-              />
-            </Grid>
 
-            {/* THIS IS FOR CURRENT WEATHER CONDITIONS */}
-            <Grid item>
-              <hr />
+            <Grid item sx={{ p: "10px" }}>
               <Grid
                 item
                 sx={{
-                  mt: 1.25,
-                  mb: 1.25,
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
-                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                  <ThermostatOutlinedIcon />{" "}
-                  <Typography sx={{ fontSize: "1.1em" }}>High / Low</Typography>
-                </Grid>
-                <Typography sx={{ fontSize: "1.1em" }}>
-                  {forecastWeather[0].day.maxtemp_f}°F /{" "}
-                  {forecastWeather[0].day.mintemp_f}°F
-                </Typography>
-              </Grid>
-              <hr />
-              <Grid
-                item
-                sx={{
-                  mt: 1.25,
-                  mb: 1.25,
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                  <AirOutlinedIcon />{" "}
-                  <Typography sx={{ fontSize: "1.1em" }}>
-                    Wind Direction
+                <Grid item>
+                  <Typography sx={{ fontSize: "2.25em" }}>
+                    {currentWeather.current.feelslike_f}°F
+                  </Typography>
+                  <Typography sx={{ fontSize: "1.25em" }}>
+                    Feels Like
                   </Typography>
                 </Grid>
+                <img
+                  src={currentWeather.current.condition.icon}
+                  alt="weatherIcon"
+                  height="100px"
+                  width="100px"
+                />
+              </Grid>
+
+              {/* THIS IS FOR CURRENT WEATHER CONDITIONS */}
+              <Grid item>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                    <ThermostatOutlinedIcon />{" "}
+                    <Typography sx={{ fontSize: "1.1em" }}>
+                      High / Low
+                    </Typography>
+                  </Grid>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {forecastWeather[0].day.maxtemp_f}°F /{" "}
+                    {forecastWeather[0].day.mintemp_f}°F
+                  </Typography>
+                </Grid>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                    <AirOutlinedIcon />{" "}
+                    <Typography sx={{ fontSize: "1.1em" }}>
+                      Wind Direction
+                    </Typography>
+                  </Grid>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {currentWeather.current.wind_dir}
+                  </Typography>
+                </Grid>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                    <AirOutlinedIcon />{" "}
+                    <Typography sx={{ fontSize: "1.1em" }}>
+                      Wind Speed
+                    </Typography>
+                  </Grid>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {currentWeather.current.wind_mph} mph
+                  </Typography>
+                </Grid>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                    <StormOutlinedIcon />{" "}
+                    <Typography sx={{ fontSize: "1.1em" }}>
+                      Gust Speed
+                    </Typography>
+                  </Grid>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {currentWeather.current.gust_mph} mph
+                  </Typography>
+                </Grid>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                    <OpacityOutlinedIcon />{" "}
+                    <Typography sx={{ fontSize: "1.1em" }}>Humidity</Typography>
+                  </Grid>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {currentWeather.current.humidity}%
+                  </Typography>
+                </Grid>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                    <CompressOutlinedIcon />{" "}
+                    <Typography sx={{ fontSize: "1.1em" }}>Pressure</Typography>
+                  </Grid>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {currentWeather.current.pressure_in} in.
+                  </Typography>
+                </Grid>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                    <LightModeOutlinedIcon />{" "}
+                    <Typography sx={{ fontSize: "1.1em" }}>UV Index</Typography>
+                  </Grid>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {currentWeather.current.uv} out of 10
+                  </Typography>
+                </Grid>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                    <VisibilityOutlinedIcon />{" "}
+                    <Typography sx={{ fontSize: "1.1em" }}>
+                      Visibility
+                    </Typography>
+                  </Grid>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {currentWeather.current.vis_miles} miles
+                  </Typography>
+                </Grid>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 0,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                    <DarkModeOutlinedIcon />{" "}
+                    <Typography sx={{ fontSize: "1.1em" }}>
+                      Moon Phase
+                    </Typography>
+                  </Grid>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {forecastWeather[0].astro.moon_phase}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Paper>
+          <br />
+
+          {/* THIS SHOWS THE AIR QUALITY OF THE LOCATION */}
+          <Paper elevation={5}>
+            <Grid item sx={{ p: "10px" }}>
+              <Typography sx={{ fontSize: "1.2em" }}>
+                {currentWeather.location.name}, {currentWeather.location.region}{" "}
+                Air Quality
+              </Typography>
+            </Grid>
+            <Grid item sx={{ p: "10px" }}>
+              <Grid
+                item
+                sx={{
+                  mt: 1.25,
+                  mb: 1.25,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
                 <Typography sx={{ fontSize: "1.1em" }}>
-                  {currentWeather.current.wind_dir}
+                  Carbon Monoxide (CO2)
+                </Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {Math.floor(airQuality.co)} (μg/m3)
                 </Typography>
               </Grid>
               <hr />
@@ -893,12 +1091,9 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                  <AirOutlinedIcon />{" "}
-                  <Typography sx={{ fontSize: "1.1em" }}>Wind Speed</Typography>
-                </Grid>
+                <Typography sx={{ fontSize: "1.1em" }}>Ozone (O3)</Typography>
                 <Typography sx={{ fontSize: "1.1em" }}>
-                  {currentWeather.current.wind_mph} mph
+                  {Math.floor(airQuality.o3)} (μg/m3)
                 </Typography>
               </Grid>
               <hr />
@@ -912,12 +1107,11 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                  <StormOutlinedIcon />{" "}
-                  <Typography sx={{ fontSize: "1.1em" }}>Gust Speed</Typography>
-                </Grid>
                 <Typography sx={{ fontSize: "1.1em" }}>
-                  {currentWeather.current.gust_mph} mph
+                  Sulphur Dioxide (SO2)
+                </Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {Math.floor(airQuality.so2)} (μg/m3)
                 </Typography>
               </Grid>
               <hr />
@@ -931,12 +1125,9 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                  <OpacityOutlinedIcon />{" "}
-                  <Typography sx={{ fontSize: "1.1em" }}>Humidity</Typography>
-                </Grid>
+                <Typography sx={{ fontSize: "1.1em" }}>PM2.5</Typography>
                 <Typography sx={{ fontSize: "1.1em" }}>
-                  {currentWeather.current.humidity}%
+                  {Math.floor(airQuality.pm2_5)} (μg/m3)
                 </Typography>
               </Grid>
               <hr />
@@ -950,50 +1141,9 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                  <CompressOutlinedIcon />{" "}
-                  <Typography sx={{ fontSize: "1.1em" }}>Pressure</Typography>
-                </Grid>
+                <Typography sx={{ fontSize: "1.1em" }}>PM10</Typography>
                 <Typography sx={{ fontSize: "1.1em" }}>
-                  {currentWeather.current.pressure_in} in.
-                </Typography>
-              </Grid>
-              <hr />
-              <Grid
-                item
-                sx={{
-                  mt: 1.25,
-                  mb: 1.25,
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                  <LightModeOutlinedIcon />{" "}
-                  <Typography sx={{ fontSize: "1.1em" }}>UV Index</Typography>
-                </Grid>
-                <Typography sx={{ fontSize: "1.1em" }}>
-                  {currentWeather.current.uv} out of 10
-                </Typography>
-              </Grid>
-              <hr />
-              <Grid
-                item
-                sx={{
-                  mt: 1.25,
-                  mb: 1.25,
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                  <VisibilityOutlinedIcon />{" "}
-                  <Typography sx={{ fontSize: "1.1em" }}>Visibility</Typography>
-                </Grid>
-                <Typography sx={{ fontSize: "1.1em" }}>
-                  {currentWeather.current.vis_miles} miles
+                  {Math.floor(airQuality.pm10)} (μg/m3)
                 </Typography>
               </Grid>
               <hr />
@@ -1007,251 +1157,147 @@ const Home = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                  <DarkModeOutlinedIcon />{" "}
-                  <Typography sx={{ fontSize: "1.1em" }}>Moon Phase</Typography>
-                </Grid>
                 <Typography sx={{ fontSize: "1.1em" }}>
-                  {forecastWeather[0].astro.moon_phase}
+                  UK Defra Index
+                </Typography>
+                <Typography sx={{ fontSize: "1.1em" }}>
+                  {airQuality["gb-defra-index"]} out of 10
                 </Typography>
               </Grid>
             </Grid>
           </Paper>
           <br />
-          <br />
-
-          {/* THIS SHOWS THE AIR QUALITY OF THE LOCATION */}
-          <Paper elevation={5}>
-            <Grid item>
-              <Typography sx={{ fontSize: "1.2em" }}>
-                {currentWeather.location.name}, {currentWeather.location.region}{" "}
-                Air Quality
-              </Typography>
-            </Grid>
-            <Grid
-              item
-              sx={{
-                mt: 1.25,
-                mb: 1.25,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography sx={{ fontSize: "1.1em" }}>
-                Carbon Monoxide (CO2)
-              </Typography>
-              <Typography sx={{ fontSize: "1.1em" }}>
-                {Math.floor(airQuality.co)} (μg/m3)
-              </Typography>
-            </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                mt: 1.25,
-                mb: 1.25,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography sx={{ fontSize: "1.1em" }}>Ozone (O3)</Typography>
-              <Typography sx={{ fontSize: "1.1em" }}>
-                {Math.floor(airQuality.o3)} (μg/m3)
-              </Typography>
-            </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                mt: 1.25,
-                mb: 1.25,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography sx={{ fontSize: "1.1em" }}>
-                Sulphur Dioxide (SO2)
-              </Typography>
-              <Typography sx={{ fontSize: "1.1em" }}>
-                {Math.floor(airQuality.so2)} (μg/m3)
-              </Typography>
-            </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                mt: 1.25,
-                mb: 1.25,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography sx={{ fontSize: "1.1em" }}>PM2.5</Typography>
-              <Typography sx={{ fontSize: "1.1em" }}>
-                {Math.floor(airQuality.pm2_5)} (μg/m3)
-              </Typography>
-            </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                mt: 1.25,
-                mb: 1.25,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography sx={{ fontSize: "1.1em" }}>PM10</Typography>
-              <Typography sx={{ fontSize: "1.1em" }}>
-                {Math.floor(airQuality.pm10)} (μg/m3)
-              </Typography>
-            </Grid>
-            <hr />
-            <Grid
-              item
-              sx={{
-                mt: 1.25,
-                mb: 0,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography sx={{ fontSize: "1.1em" }}>UK Defra Index</Typography>
-              <Typography sx={{ fontSize: "1.1em" }}>
-                {airQuality["gb-defra-index"]} out of 10
-              </Typography>
-            </Grid>
-          </Paper>
-          <br />
-          <br />
 
           {/* THIS IS FOR ASTRONOMY RELATED TO THE CITY AND LOCATION */}
           <Paper elevation={5}>
-            <Grid item>
+            <Grid item sx={{ p: "10px" }}>
               <Typography sx={{ fontSize: "1.2em" }}>
                 Astronomy in {currentWeather.location.name},{" "}
                 {currentWeather.location.region}
               </Typography>
             </Grid>
 
-            <Grid
-              item
-              sx={{
-                p: 1.5,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-              }}
-            >
-              <Grid>
-                {getMoonPhaseIcon(forecastWeather[0].astro.moon_phase)}
-              </Grid>
-              <Grid>
-                <Typography>Current Moon Phase: </Typography>
-                <Typography>{forecastWeather[0].astro.moon_phase}</Typography>
-              </Grid>
-            </Grid>
-            <Grid item>
+            <Grid item sx={{ p: "10px" }}>
               <Grid
                 item
                 sx={{
-                  mt: 1.25,
-                  mb: 1.25,
+                  p: 1.5,
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "space-between",
+                  justifyContent: "space-evenly",
+                  alignItems: "center",
                 }}
               >
-                <Typography sx={{ fontSize: "1.1em" }}>
-                  Moon Illumination
-                </Typography>
-                <Typography sx={{ fontSize: "1.1em" }}>
-                  {astroWeather.moon_illumination}%
-                </Typography>
+                <Grid>
+                  {getMoonPhaseIcon(forecastWeather[0].astro.moon_phase)}
+                </Grid>
+                <Grid>
+                  <Typography>Current Moon Phase: </Typography>
+                  <Typography>{forecastWeather[0].astro.moon_phase}</Typography>
+                </Grid>
               </Grid>
-              <hr />
-              <Grid
-                item
-                sx={{
-                  mt: 1.25,
-                  mb: 1.25,
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography sx={{ fontSize: "1.1em" }}>Sunrise</Typography>
-                <Typography sx={{ fontSize: "1.1em" }}>
-                  {astroWeather.sunrise}
-                </Typography>
-              </Grid>
-              <hr />
-              <Grid
-                item
-                sx={{
-                  mt: 1.25,
-                  mb: 1.25,
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography sx={{ fontSize: "1.1em" }}>Sunset</Typography>
-                <Typography sx={{ fontSize: "1.1em" }}>
-                  {astroWeather.sunset}
-                </Typography>
-              </Grid>
-              <hr />
-              <Grid
-                item
-                sx={{
-                  mt: 1.25,
-                  mb: 1.25,
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography sx={{ fontSize: "1.1em" }}>Moonrise</Typography>
-                <Typography sx={{ fontSize: "1.1em" }}>
-                  {astroWeather.moonrise}
-                </Typography>
-              </Grid>
-              <hr />
-              <Grid
-                item
-                sx={{
-                  mt: 1.25,
-                  mb: 1.25,
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography sx={{ fontSize: "1.1em" }}>Moonset</Typography>
-                <Typography sx={{ fontSize: "1.1em" }}>
-                  {astroWeather.moonset}
-                </Typography>
+              <Grid item>
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    Moon Illumination
+                  </Typography>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {astroWeather.moon_illumination}%
+                  </Typography>
+                </Grid>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Typography sx={{ fontSize: "1.1em" }}>Sunrise</Typography>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {astroWeather.sunrise}
+                  </Typography>
+                </Grid>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Typography sx={{ fontSize: "1.1em" }}>Sunset</Typography>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {astroWeather.sunset}
+                  </Typography>
+                </Grid>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Typography sx={{ fontSize: "1.1em" }}>Moonrise</Typography>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {astroWeather.moonrise}
+                  </Typography>
+                </Grid>
+                <hr />
+                <Grid
+                  item
+                  sx={{
+                    mt: 1.25,
+                    mb: 1.25,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Typography sx={{ fontSize: "1.1em" }}>Moonset</Typography>
+                  <Typography sx={{ fontSize: "1.1em" }}>
+                    {astroWeather.moonset}
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
           </Paper>
           <br />
-          <br />
 
           {/* THIS FOR 3 DAY FORECAST */}
           <Paper elevation={5}>
-            <Grid item>
+            <Grid item sx={{ p: "10px" }}>
               <Typography sx={{ fontSize: "1.2em" }}>3-Day Forecast</Typography>
             </Grid>
 
-            <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                p: "10px",
+              }}
+            >
               <Grid
                 item
                 sx={{
@@ -1358,167 +1404,169 @@ const Home = () => {
             </Grid>
           </Paper>
           <br />
-          <br />
 
           {/* THIS FOR 7 DAY FORECAST */}
           <Paper elevation={5}>
-            <Grid item>
+            <Grid item sx={{ p: "10px" }}>
               <Typography sx={{ fontSize: "1.2em" }}>
                 5-Day Weather Forecast
               </Typography>
             </Grid>
 
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                <Typography>Today</Typography>
-                <Typography>
-                  {sevenForecast.data[0].max_temp} /{" "}
-                  {sevenForecast.data[0].min_temp}
-                </Typography>
-              </Grid>
+            <Grid item sx={{ p: "10px" }}>
               <Grid
                 item
                 sx={{
-                  textAlign: "right",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 }}
               >
-                <Typography>
-                  {sevenForecast.data[0].weather.description}
-                </Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <Typography>Today</Typography>
+                  <Typography>
+                    {sevenForecast.data[0].max_temp} /{" "}
+                    {sevenForecast.data[0].min_temp}
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  sx={{
+                    textAlign: "right",
+                  }}
+                >
+                  <Typography>
+                    {sevenForecast.data[0].weather.description}
+                  </Typography>
+                </Grid>
               </Grid>
-            </Grid>
 
-            <hr />
+              <hr />
 
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                <Typography>
-                  {sevenDay[1]} {sevenForecast.data[1].datetime.substr(8, 9)}
-                </Typography>
-                <Typography>
-                  {sevenForecast.data[1].max_temp} /{" "}
-                  {sevenForecast.data[1].min_temp}
-                </Typography>
-              </Grid>
               <Grid
                 item
                 sx={{
-                  textAlign: "right",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 }}
               >
-                <Typography>
-                  {sevenForecast.data[1].weather.description}
-                </Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <Typography>
+                    {sevenDay[1]} {sevenForecast.data[1].datetime.substr(8, 9)}
+                  </Typography>
+                  <Typography>
+                    {sevenForecast.data[1].max_temp} /{" "}
+                    {sevenForecast.data[1].min_temp}
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  sx={{
+                    textAlign: "right",
+                  }}
+                >
+                  <Typography>
+                    {sevenForecast.data[1].weather.description}
+                  </Typography>
+                </Grid>
               </Grid>
-            </Grid>
 
-            <hr />
+              <hr />
 
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                <Typography>
-                  {sevenDay[2]} {sevenForecast.data[2].datetime.substr(8, 9)}
-                </Typography>
-                <Typography>
-                  {sevenForecast.data[2].max_temp} /{" "}
-                  {sevenForecast.data[2].min_temp}
-                </Typography>
-              </Grid>
               <Grid
                 item
                 sx={{
-                  textAlign: "right",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 }}
               >
-                <Typography>
-                  {sevenForecast.data[2].weather.description}
-                </Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <Typography>
+                    {sevenDay[2]} {sevenForecast.data[2].datetime.substr(8, 9)}
+                  </Typography>
+                  <Typography>
+                    {sevenForecast.data[2].max_temp} /{" "}
+                    {sevenForecast.data[2].min_temp}
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  sx={{
+                    textAlign: "right",
+                  }}
+                >
+                  <Typography>
+                    {sevenForecast.data[2].weather.description}
+                  </Typography>
+                </Grid>
               </Grid>
-            </Grid>
 
-            <hr />
+              <hr />
 
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                <Typography>
-                  {sevenDay[3]} {sevenForecast.data[3].datetime.substr(8, 9)}
-                </Typography>
-                <Typography>
-                  {sevenForecast.data[3].max_temp} /{" "}
-                  {sevenForecast.data[3].min_temp}
-                </Typography>
-              </Grid>
               <Grid
                 item
                 sx={{
-                  textAlign: "right",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 }}
               >
-                <Typography>
-                  {sevenForecast.data[3].weather.description}
-                </Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <Typography>
+                    {sevenDay[3]} {sevenForecast.data[3].datetime.substr(8, 9)}
+                  </Typography>
+                  <Typography>
+                    {sevenForecast.data[3].max_temp} /{" "}
+                    {sevenForecast.data[3].min_temp}
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  sx={{
+                    textAlign: "right",
+                  }}
+                >
+                  <Typography>
+                    {sevenForecast.data[3].weather.description}
+                  </Typography>
+                </Grid>
               </Grid>
-            </Grid>
 
-            <hr />
+              <hr />
 
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                <Typography>
-                  {sevenDay[4]} {sevenForecast.data[4].datetime.substr(8, 9)}
-                </Typography>
-                <Typography>
-                  {sevenForecast.data[4].max_temp} /{" "}
-                  {sevenForecast.data[4].min_temp}
-                </Typography>
-              </Grid>
               <Grid
                 item
                 sx={{
-                  textAlign: "right",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 }}
               >
-                <Typography>
-                  {sevenForecast.data[4].weather.description}
-                </Typography>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <Typography>
+                    {sevenDay[4]} {sevenForecast.data[4].datetime.substr(8, 9)}
+                  </Typography>
+                  <Typography>
+                    {sevenForecast.data[4].max_temp} /{" "}
+                    {sevenForecast.data[4].min_temp}
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  sx={{
+                    textAlign: "right",
+                  }}
+                >
+                  <Typography>
+                    {sevenForecast.data[4].weather.description}
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
           </Paper>
+          <br />
         </Grid>
       </Grid>
     </Box>
