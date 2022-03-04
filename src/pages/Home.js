@@ -196,10 +196,12 @@ const Home = () => {
         <Grid
           item
           sx={{
-            maxWidth: "500px",
             display: "flex",
             justifyContent: "center",
             flexDirection: "column",
+            minWidth: "350px",
+            maxWidth: "450px",
+            m: "15px",
           }}
         >
           <Grid item sx={{ display: "flex", flexDirection: "row" }}>
@@ -221,6 +223,7 @@ const Home = () => {
           <br />
 
           {/* THIS IS JUST GIVES THE BASIC SUMMARY OF TODAYS WEATHER */}
+
           <Paper elevation={5}>
             <Grid item sx={{ background: "#000040", opacity: ".75" }}>
               <Typography sx={{ fontSize: "1.2em", color: "white", mb: "5px" }}>
@@ -263,6 +266,7 @@ const Home = () => {
               </Grid>
             </Grid>
           </Paper>
+
           <br />
           <br />
 
